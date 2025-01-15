@@ -252,38 +252,64 @@ class DocumentFieldAutomation:
         self.root = tk.Tk()
         self.root.title("Document Field Automation")
         
-        case_frame = ttk.LabelFrame(self.root, text="Case Information", padding=10)
+        # Create a scrollable frame
+        main_frame = ttk.Frame(self.root)
+        main_frame.pack(fill="both", expand=True, padx=10, pady=5)
+        
+        canvas = tk.Canvas(main_frame)
+        scrollbar = ttk.Scrollbar(main_frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
+        
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
+        
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
+        
+        # Case information
+        case_frame = ttk.LabelFrame(scrollable_frame, text="Case Information", padding=10)
         case_frame.pack(fill="x", padx=10, pady=5)
         
         ttk.Label(case_frame, text="Case Name:").pack()
         self.case_name_entry = ttk.Entry(case_frame)
         self.case_name_entry.pack(pady=5)
         
-        fields_frame = ttk.LabelFrame(self.root, text="Document Fields", padding=10)
+        # Fields input
+        fields_frame = ttk.LabelFrame(scrollable_frame, text="Document Fields", padding=10)
         fields_frame.pack(fill="x", padx=10, pady=5)
         
         self.inputs = {}
         for field in self.field_mappings['fields']:
-            label = ttk.Label(fields_frame, text=field['display_name'])
-            label.pack(pady=5)
+            field_frame = ttk.Frame(fields_frame)
+            field_frame.pack(fill="x", pady=5)
             
-            entry = ttk.Entry(fields_frame)
+            ttk.Label(field_frame, text=field['display_name']).pack()
+            entry = ttk.Entry(field_frame)
             entry.pack(pady=5)
             self.inputs[field['name']] = entry
         
+        # Status message
         self.status_var = tk.StringVar()
-        status_label = ttk.Label(self.root, textvariable=self.status_var)
+        status_label = ttk.Label(scrollable_frame, textvariable=self.status_var)
         status_label.pack(pady=5)
         
-        submit_btn = ttk.Button(self.root, text="Process Documents", 
+        # Submit button
+        submit_btn = ttk.Button(scrollable_frame, text="Process Documents", 
                               command=self.validate_and_process)
         submit_btn.pack(pady=20)
         
-        info_frame = ttk.LabelFrame(self.root, text="System Information", padding=10)
+        # System information
+        info_frame = ttk.LabelFrame(scrollable_frame, text="System Information", padding=10)
         info_frame.pack(fill="x", padx=10, pady=5)
         
         ttk.Label(info_frame, text=f"Templates Folder: {self.templates_folder}").pack()
         ttk.Label(info_frame, text=f"Cases Folder: {self.cases_folder}").pack()
+        
+        # Pack the scrollbar and canvas
+        scrollbar.pack(side="right", fill="y")
+        canvas.pack(side="left", fill="both", expand=True)
         
         self.root.mainloop()
 
