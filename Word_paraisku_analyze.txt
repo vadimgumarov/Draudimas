@@ -1,0 +1,473 @@
+(venv) 206753750 ~/Desktop/Lauris/templates  $ #python analyze_word.py
+
+Analyzing: Europos_paramos_KPP.docx
+Number of tables: 9
+
+Table 0:
+Rows: 4, Columns: 1
+Row 0, Column 0: |__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__| SAVIVALDYBĖS ADMINISTRACIJA
+(pildo savivaldybės administracijos darbuotojas)
+Row 1, Column 0: |__|__|__|__|  |__|__|  |__|__|         |__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|
+(paraiškos registracijos data ir registracijos numeris)
+Row 2, Column 0: (paraišką užregistravusio tarnautojo pareigos)                   (vardas, pavardė)                      (parašas)
+Row 3, Column 0: Paraiška vertinti priimta    
+Paraiška atmesta
+
+Table 1:
+Rows: 1, Columns: 1
+
+Table 2:
+Rows: 17, Columns: 2
+Row 0, Column 0: Adresas 
+(Nurodoma pareiškėjo gyvenamoji vieta (įmonės buveinės adresas), telefonas, faksas, el. paštas, kuriuo bus galima susisiekti su pareiškėju paraiškos vertinimo ir priemonės įgyvendinimo metu)
+Row 0, Column 1: Adresas 
+(Nurodoma pareiškėjo gyvenamoji vieta (įmonės buveinės adresas), telefonas, faksas, el. paštas, kuriuo bus galima susisiekti su pareiškėju paraiškos vertinimo ir priemonės įgyvendinimo metu)
+Row 1, Column 0: Savivaldybės pavadinimas r. sav.
+Row 1, Column 1: Savivaldybės pavadinimas r. sav.
+Row 2, Column 0: Seniūnijos pavadinimas sen.
+Row 2, Column 1: Seniūnijos pavadinimas sen.
+Row 3, Column 0: Gyvenamosios vietovės pavadinimas
+Row 3, Column 1: Gyvenamosios vietovės pavadinimas
+Row 4, Column 0: Gatvės pavadinimas
+Row 4, Column 1: Gatvės pavadinimas
+Row 5, Column 0: Namo Nr.
+Row 5, Column 1: Namo Nr.
+Row 6, Column 0: Buto Nr.
+Row 6, Column 1: Buto Nr.
+Row 7, Column 0: Pašto indeksas
+Row 7, Column 1: Pašto indeksas
+Row 8, Column 0: Tel. Nr.
+Row 8, Column 1: Tel. Nr.
+Row 9, Column 0: Faks. Nr.
+Row 9, Column 1: Faks. Nr.
+Row 10, Column 0: El. paštas
+Row 10, Column 1: El. paštas
+Row 12, Column 0: Pareiškėjo banko rekvizitai
+ (Nurodyti duomenis, kur bus pervesta patvirtinta paramos suma) – banko pavadinimą, banko kodą ir savo atsiskaitomosios sąskaitos numerį)
+
+Banko pavadinimas   
+
+Banko kodas 
+
+Atsiskaitomosios sąskaitos numeris
+Row 12, Column 1: Pareiškėjo banko rekvizitai
+ (Nurodyti duomenis, kur bus pervesta patvirtinta paramos suma) – banko pavadinimą, banko kodą ir savo atsiskaitomosios sąskaitos numerį)
+
+Banko pavadinimas   
+
+Banko kodas 
+
+Atsiskaitomosios sąskaitos numeris
+Row 14, Column 0: Pareiškėjui informaciją apie paraiškos administravimo eigą teikti:
+( Užpildoma, pažymint langelį ženklu „X“)
+Row 14, Column 1: Pareiškėjui informaciją apie paraiškos administravimo eigą teikti:
+( Užpildoma, pažymint langelį ženklu „X“)
+Row 15, Column 0: Paštu
+Row 16, Column 0: Elektroniniu paštu
+
+Table 3:
+Rows: 6, Columns: 2
+Row 0, Column 0: 1.
+Row 0, Column 1: Informacija apie ūkininką (pildo tik fiziniai asmenys)
+Row 1, Column 0: 1.1.
+Row 1, Column 1: Žemės ūkio valdos atpažinties kodas
+Row 2, Column 0: 1.2.
+Row 2, Column 1: Asmens kodas
+Row 3, Column 0: 2.
+Row 3, Column 1: Informacija apie juridinį asmenį (pildo tik juridiniai asmenys)
+Row 4, Column 0: 2.1.
+Row 4, Column 1: Žemės ūkio valdos atpažinties kodas
+Row 5, Column 0: 2.2.
+Row 5, Column 1: Juridinio asmens atpažinties kodas      
+(Juridinių asmenų registro išduotame registravimo pažymėjime nurodytas kodas)
+
+Table 4:
+Rows: 5, Columns: 3
+Row 0, Column 0: 1.
+Row 0, Column 1: Programos priemonės veiklos srities kodas
+Row 0, Column 2: 17.2
+Row 1, Column 0: 2.
+Row 1, Column 1: Informacija apie draudimo sutartį
+Row 1, Column 2: Nurodoma draudimo sutarties data, serija ir Nr.
+PARAIŠKA SUDARYTI PASĖLIŲ DRAUDIMO SUTARTĮ,      2024-11-21
+Row 2, Column 0: 3.
+Row 2, Column 1: Draudimo sutartyje nurodyta draudimo įmokos suma, Eur:
+Row 2, Column 2: Nurodoma draudimo sutartyje nurodyta pagal draudimo sutartį mokėtina draudimo įmokos suma, Eur
+Row 3, Column 0: 4.
+Row 3, Column 1: Draudimo sutartyje nurodyta tinkama kompensuoti pagal Taisykles draudimo įmokos suma, Eur:
+Row 3, Column 2: Nurodoma draudimo sutartyje nurodyta pagal draudimo sutartį mokėtina, tinkama kompensuoti pagal Taisykles, draudimo įmokos suma, Eur
+Row 4, Column 0: 5.
+Row 4, Column 1: Pareiškėjo įgaliotas asmuo, atsakingas už vykdomos veiklos priežiūrą
+(Pildoma,jei toks yra)
+Row 4, Column 2: (vardas , pavardė)
+
+                                                  (pareigos)
+
+                                                   (tel. Nr. )
+
+                                                  (el. paštas )
+
+Table 5:
+Rows: 1, Columns: 1
+Row 0, Column 0: Trumpas veiklos esmės aprašymas: žemės ūkio valdos / ūkio apibūdinimas;
+
+Ūkininko pagrindinė kryptis yra augalininkystė. Paraiškos pateikimo dieną ūkininkas valdo ir planuoja dirbti 128,00  ha žemės ūkio naudmenų plotą. Planuojama auginti šias kultūras: žieminius kviečius, žieminius rapsus ir vasarinius kviečius ir pašarinius žirnius.
+
+Andrius Žemkauskas - Ūkininkas, kurio tikslas pasinaudojus pagal Lietuvos kaimo plėtros 2014-2020 metų programos priemonės „Rizikos valdymas“ veiklos sritį ,,Pasėlių, gyvūnų ir augalų draudimo įmokos“ teikiama parama apsidrausti savo pasėlius nuo iššalimo ir taip valdyti vykdomos ūkinės veiklos riziką. 
+
+Vieta, kurioje bus vykdoma veikla;
+Raseiniųr., Kalnujų sen.
+Kokioms problemoms spręsti reikalingas pasėlių ir augalų draudimas;
+Pagal šią priemonę teikiama parama draudimo įmokoms kompensuoti padės išlaikyti ūkio perspektyvumą ir konkurencingumą ilgesnį laiką, o pasireiškus nepalankiems klimato reiškiniams, kurie paveikė augalus bei pasėlius, sudarys palankesnes sąlygas ūkininkams atkurti sumažėjusį žemės ūkio potencialą. 
+Kodėl pasirinktas būtent toks problemos sprendimo būdas;
+Ūkininko siekiai atitinka veiklos srities ,,Pasėlių, gyvūnų ir augalų draudimo įmokos“ prioritetus, tikslines sritis ir kompleksinius tikslus. ES parama – viena pagrindinių priežasčių drausti pasėlius ir taip valdyti vykdomos ūkinės veiklos riziką. 
+Kaip vykdoma veikla atitinka Taisyklių III skyriuje nurodytus prioritetus, tikslines sritis ir kompleksinius tikslus;
+Įgyvendinant programos priemonę prisidedama prie ES kaimo  plėtros trečiojo prioriteto įgyvendinimo bei kompleksinio tikslo- inovacijų kūrimo, diegimo ir sklaidos.
+Kas bus atsakingas už vykdomą veiklą.
+Andrius Žemkauskas
+
+Table 6:
+Rows: 2, Columns: 3
+Row 0, Column 0: 1.
+Row 0, Column 1: Patvirtinu, kad išlaidos, kurioms finansuoti prašoma paramos, nebuvo, nėra ir nebus finansuojamos iš kitų nacionalinių programų ir ES fondų?
+Row 1, Column 0: 2.
+Row 1, Column 1: Patvirtinu, kad apdrausti pasėliai ir (ar) augalai auginami Lietuvos Respublikos teritorijoje?
+
+Table 7:
+Rows: 4, Columns: 4
+Row 0, Column 0: Eil. Nr.
+Row 0, Column 1: Dokumento pavadinimas
+Row 0, Column 2: Pažymėti X
+Row 0, Column 3: Lapų skaičius
+Row 1, Column 0: 1.
+Row 1, Column 1: Draudimo paraiška
+Row 1, Column 3: 6
+Row 2, Column 0: 2.
+Row 2, Column 1: Draudimo įmonės pasiūlymas
+Row 2, Column 3: 2
+Row 3, Column 0: 3.
+Row 3, Column 1: Kiti dokumentai, kurie gali būti svarbūs vertinant paramos paraišką
+(įrašyti):
+1.
+2.
+3.
+
+Table 8:
+Rows: 1, Columns: 1
+Row 0, Column 0: Aš, pretenduojantis (-i) gauti paramą pagal priemonės „Rizikos valdymas“ veiklos sritį „Pasėlių, gyvūnų ir augalų draudimo įmokos“, susijusią su pasėlių ir augalų draudimo įmokų kompensavimu, pasirašydamas (-a) šioje paramos paraiškoje, patvirtinu, kad:
+1. šioje paramos paraiškoje ir prie jos pridėtuose dokumentuose pateikta informacija, mano žiniomis ir įsitikinimu, yra teisinga;
+2. esu susipažinęs (-usi) su Taisyklių reikalavimais;
+3. esu informuotas (-a) ir sutinku, kad savivaldybė ir Agentūra tikrins pateiktus duomenis kituose valstybės registruose ir duomenų bazėse. Esu informuotas (-a) ir sutinku, kad esu atsakingas (-a) už reikiamų dokumentų ir (arba) pažymų pateikimą Agentūrai laiku;
+4. žinau, kad savivaldybė, priimdama sprendimą dėl paramos suteikimo (nesuteikimo), vadovausis viešuosiuose registruose esančiais duomenimis;
+5. nesu pažeidęs (-usi) jokios sutarties dėl paramos skyrimo iš ES arba Lietuvos Respublikos biudžeto lėšų;
+6. nėra ir nebus dirbtinai sukurtos sąlygos paramai gauti;
+7. žinau, kad paramos paraiška gali būti atmesta, jeigu joje pateikti ne visi prašomi duomenys (įskaitant šią deklaraciją);
+8. žinau, kad savivaldybė ir Agentūra gali patikrinti pateiktus duomenis ir prašyti papildomos informacijos;
+9. žinau, kad Agentūra gali atlikti patikrą vietoje. Pateiktus duomenis kontrolės tikslams gali panaudoti ir kitos Lietuvos Respublikos ir ES institucijos;
+10. esu informuotas (-a) ir sutinku, kad duomenys apie gaunamą (gautą) paramą bus viešinami visuomenės informavimo tikslais, taip pat gali būti perduoti audito ir tyrimų institucijoms siekiant apsaugoti ES finansinius interesus ES ir Lietuvos Respublikos teisės aktuose nustatyta tvarka;
+11. esu informuotas (-a), kad turiu teisę žinoti apie savo asmens duomenų tvarkymą, susipažinti su tvarkomais savo asmens duomenimis ir kaip jie yra tvarkomi, reikalauti ištaisyti, ištrinti savo asmens duomenis („teisė būti pamirštam“), sustabdyti savo asmens duomenų tvarkymo veiksmus, kai duomenys tvarkomi nesilaikant ES ir Lietuvos Respublikos teisės aktų nuostatų, taip pat nesutikti (teisiškai pagrindžiant), kad būtų tvarkomi mano asmens duomenys, bei teisę į duomenų perkeliamumą;
+12. esu informuotas (-a), kad duomenų tvarkytoja yra savivaldybė ir Agentūra;
+13. žinau, kad, jei norėdamas (-a) gauti paramą pateiksiu melagingos informacijos arba dėl aplaidumo nepateiksiu būtinos informacijos, man gali būti taikomos teisės aktų numatytos sankcijos; 
+14. žinau, kad, jei netinkamai vykdysiu veiklą pagal šią paramos paraišką ar kitaip pažeisiu teisės aktų, reglamentuojančių paramos teikimą ir administravimą, reikalavimus, man gali būti taikomos teisės aktų numatytos sankcijos.
+
+Įsipareigoju:
+1. ne vėliau kaip per 30 kalendorinių dienų nuo sutarties pasibaigimo ar nutraukimo pateikti savivaldybei visus dokumentus dėl draudimo sutarties pakeitimo (jei draudimo sutartis per jos galiojimo laikotarpį buvo keičiama ar nutraukta), visus draudimo įmokų sumokėjimo patvirtinimo dokumentus ir, tuo atveju, jei draudimo įmonė grąžino sumokėtą draudimo įmoką ar jos dalį, lėšų grąžinimą įrodančius dokumentus, o tuo atveju, jei įvyko draudžiamasis įvykis ir pagal draudimo sutartį buvo išmokėtos draudimo išmokos – patirto nuostolio dydį ir išmokėtų draudimo išmokų dydį pagrindžiančius dokumentus;
+2. ne vėliau kaip per 10 (dešimt) darbo dienų pranešti savivaldybei apie bet kurių duomenų, pateiktų šioje paramos paraiškoje, taip pat apie savo rekvizitų pasikeitimus bei aplinkybių, kurios turi įtakos tinkamam įsipareigojimų vykdymui, atsiradimą;
+3. draudimo įmokos mokėjimus draudimo įmonei vykdyti tik per finansines institucijas;
+4. gavęs (-usi) savivaldybės ar Agentūros sprendimą dėl paramos neskyrimo, paramos išmokėjimo sustabdymo, paramos sumažinimo, dėl paramos mokėjimo nutraukimo ir (arba) reikalavimo grąžinti paramos lėšas ar jų dalį, per sprendime nustatytą terminą įvykdyti sprendime išvardytus reikalavimus ir (arba) grąžinti paramos lėšas į sprendime nurodytą sąskaitą. Žinau, kad per Agentūros rašte nustatytą terminą negrąžinus paramos lėšų ar jų dalies, yra skaičiuojamos palūkanos. Palūkanos už pavėluotas grąžinti lėšas apskaičiuojamos teisės aktų nustatyta tvarka;
+5. klaidingai apskaičiuotą ir pervestą į mano atsiskaitomąją sąskaitą paramos sumą grąžinti Agentūrai;
+6. sudaryti sąlygas asmenims, turintiems teisę audituoti ir (arba) kontroliuoti, tikrinti, kaip yra vykdoma veikla, laikomasi sąlygų, už ką skiriama parama;
+7. teikti visą informaciją ir duomenis, reikalingus statistikos tikslams ir Programos įgyvendinimo stebėsenai bei reikalingiems vertinimams atlikti;
+8. tinkamai saugoti visus dokumentus, susijusius su paramos skyrimu.
+
+Esu informuotas (-a) ir sutinku, kad:
+1. paramos paraiškoje pateikti ir su jos įgyvendinimu susiję duomenys būtų apdorojami, tvarkomi ir saugomi elektroniniu būdu/informacinėje sistemoje, juos kontrolės, priežiūros, statistikos ir vertinimo tikslams gali panaudoti savivaldybė, Agentūra, Žemės ūkio ministerija, kitos su Europos žemės ūkio fondo kaimo plėtrai administravimu susijusios Lietuvos Respublikos ir ES institucijos;
+2. informacija apie man skirtą paramą, nurodant pareiškėjo vardą, pavardę/pavadinimą ir išmokėtą paramos sumą, būtų skelbiama Agentūros interneto svetainėje ir visa su šiuo projektu susijusi informacija būtų naudojama statistikos, vertinimo bei tyrimų tikslais;
+3. paramos paraiškoje ir kituose savivaldybei ir Agentūrai teikiamuose dokumentuose esantys mano asmens ir kiti duomenys ir (arba) juridinio asmens, kuriam aš atstovauju, duomenys būtų apdorojami ir saugomi paramos priemonių administravimo informacinėse sistemose;
+4. savivaldybė ir Agentūra gautų mano asmens ir kitus duomenis ir (arba) juridinio asmens, kuriam aš atstovauju, duomenis iš kitų fizinių/juridinių asmenų, registrų ar duomenų bazių paramos administravimo klausimais;
+5. kad Agentūros tvarkomi mano asmens duomenys (kategorijos) bei detalesnė informacija apie mano asmens duomenų tvarkymą yra nurodyta www.nma.lt skiltyje „Asmens duomenų apsauga“;
+6. mano asmens duomenys yra saugomi iki išmokų mokėjimo, administravimo ir priežiūros laikotarpio pabaigos, vėliau šie duomenys archyvuojami bei perduodami valstybės archyvams;
+7. mano asmens duomenys yra tvarkomi šiais asmens duomenų tvarkymo tikslais bei teisiniais pagrindais: asmens, teikiančio paramos paraišką tapatybės nustatymo, paramos administravimo, mokėjimo ir kontrolės, paramos viešinimo tikslais, įgyvendinant 2013 m. gruodžio 17 d. Europos Parlamento ir Tarybos reglamentą (ES) Nr. 1303/2013, kuriuo nustatomos Europos regioninės plėtros fondui, Europos socialiniam fondui, Sanglaudos fondui, Europos žemės ūkio fondui kaimo plėtrai ir Europos jūros reikalų ir žuvininkystės fondui bendros nuostatos ir Europos regioninės plėtros fondui, Europos socialiniam fondui, Sanglaudos fondui ir Europos jūros reikalų ir žuvininkystės fondui taikytinos bendrosios nuostatos ir panaikinamas Tarybos reglamentas (EB) Nr. 1083/2006, 2013 m. gruodžio 17 d. Europos Parlamento ir Tarybos reglamentą (ES) Nr. 1305/2013 dėl paramos kaimo plėtrai, teikiamos Europos žemės ūkio fondo kaimo plėtrai (EŽŪFKP) lėšomis, kuriuo panaikinamas Tarybos reglamentas (EB) Nr. 1698/2005, 2013 m. gruodžio 17 d. Europos Parlamento ir Tarybos reglamentą (ES) Nr. 1306/2013 dėl bendros žemės ūkio politikos finansavimo, valdymo ir stebėsenos, kuriuo panaikinami Tarybos reglamentai (EEB) Nr. 352/78, (EB) Nr. 165/94, (EB) Nr. 2799/98, (EB) Nr. 814/2000, (EB) Nr. 1290/2005 ir (EB) Nr. 485/2008, 2014 m. rugpjūčio 6 d. Komisijos įgyvendinimo reglamentą (ES) Nr. 908/2014, kuriuo nustatomos Europos Parlamento ir Tarybos reglamento (ES) Nr. 1306/2013 taikymo taisyklės, susijusios su mokėjimo agentūromis ir kitomis įstaigomis, finansų valdymu, sąskaitų patvirtinimu, patikrų taisyklėmis, užstatais ir skaidrumu.
+
+Analyzing: NAC_2025.docx
+Number of tables: 8
+
+Table 0:
+Rows: 13, Columns: 2
+Row 0, Column 0: Žemės ūkio valdos atpažinties kodas
+Row 0, Column 1: Nr.
+Row 1, Column 0: Teisinė forma
+Row 1, Column 1: ūkininkas
+Row 2, Column 0: Fizinio/juridinio asmens kodas
+Row 3, Column 0: Vardas, pavardė / pavadinimas
+Row 4, Column 0: Adresas (savivaldybė, seniūnija, vietovė, gatvė, namo Nr., buto Nr.)
+Row 5, Column 0: Telefono Nr.
+Row 6, Column 0: El. paštas
+Row 7, Column 0: Banko pavadinimas
+Row 8, Column 0: Banko kodas
+Row 9, Column 0: Atsiskaitomosios sąskaitos numeris
+Row 10, Column 0: Informaciją ir pranešimus apie paraiškos administravimo eigą noriu gauti:
+Row 10, Column 1: Informaciją ir pranešimus apie paraiškos administravimo eigą noriu gauti:
+Row 11, Column 0: El. paštu
+Row 11, Column 1: X
+Row 12, Column 0: Registruotu laišku
+Row 12, Column 1: [ ]
+
+Table 1:
+Rows: 2, Columns: 3
+Row 0, Column 0: 1.
+Row 0, Column 1: Nereikšminga (de minimis) pagalba (įmonės* priskyrimas prie MVĮ kategorijos ir sunkumų patyrimas nevertinamas, todėl pareiškėjų   finansinės apskaitos dokumentų pateikti neprašoma)
+Row 1, Column 0: 2.
+Row 1, Column 1: Valstybės pagalba (vertinama, ar įmonė* priskiriama prie MVĮ kategorijos ir, ar įmonė nėra sunkumų patirianti įmonė, todėl kartu su paraiška fiziniai asmenys teikia paskutinio metinio ataskaitinio laikotarpio, kurio finansinės ataskaitos yra patvirtintos, balansą ir pelno (nuostolio) ataskaitą; juridinių asmenų duomenys tikrinami Juridinių asmenų registre )
+
+Table 2:
+Rows: 1, Columns: 2
+Row 0, Column 0: Pagalbos rūšis
+Row 0, Column 1: Dotacija
+
+Table 3:
+Rows: 13, Columns: 3
+Row 0, Column 0: 1.
+Row 0, Column 1: Pagal 2022 m. gruodžio 14 d. Komisijos reglamento (ES) 2022/2472, kuriuo skelbiama, kad tam tikrų kategorijų pagalba žemės bei miškų ūkio sektoriuose ir kaimo vietovėse yra suderinama su vidaus rinka pagal Sutarties dėl Europos Sąjungos veikimo 107 ir 108 straipsnius su visais pakeitimais, I priedo nuostatas esu pripažįstamas (-a):
+Row 0, Column 2: Pagal 2022 m. gruodžio 14 d. Komisijos reglamento (ES) 2022/2472, kuriuo skelbiama, kad tam tikrų kategorijų pagalba žemės bei miškų ūkio sektoriuose ir kaimo vietovėse yra suderinama su vidaus rinka pagal Sutarties dėl Europos Sąjungos veikimo 107 ir 108 straipsnius su visais pakeitimais, I priedo nuostatas esu pripažįstamas (-a):
+Row 1, Column 0: 1.1.
+Row 1, Column 1: šios rūšies įmone**:
+Row 1, Column 2: šios rūšies įmone**:
+Row 2, Column 0: 1.1.
+Row 2, Column 1: savarankiška įmone
+Row 2, Column 2: X
+Row 3, Column 0: 1.1.
+Row 3, Column 1: įmone partnere
+Susiję asmenys:
+Row 3, Column 2: [ ]
+Row 4, Column 0: 1.1.
+Row 4, Column 1: Juridiniai asmenys (pavadinimas, įmonės kodas, akcijų procentas ir (arba) asmenų, turinčių balsavimo teisę, balsų skaičiaus procentine išraiška):
+1. ___________________________________________________________________
+___________________________________________________________________;
+2. ___________________________________________________________________
+___________________________________________________________________;
+Row 4, Column 2: [ ]
+Row 5, Column 0: 1.1.
+Row 5, Column 1: Fiziniai asmenys, vykdantys ekonominę veiklą nurodoma vardas ir pavardė, asmens kodas, akcijų procentas ir (arba) asmenų, turinčių balsavimo teisę,  balsų skaičiaus procentine išraiška, paskutinio metinio ataskaitinio laikotarpio, kurio finansinės ataskaitos yra patvirtintos,  metinio ataskaitinio laikotarpio, ėjusio prieš pirmiau nurodytą ataskaitinį laikotarpį, ir prieš jį ėjusio metinio ataskaitinio laikotarpio apyvarta arba balanse nurodyto turto vertė ir vidutinis metinis darbuotojų skaičius):
+1. ___________________________________________________________________
+___________________________________________________________________;
+2. ___________________________________________________________________
+___________________________________________________________________;
+3. ___________________________________________________________________
+___________________________________________________________________;
+Row 5, Column 2: [ ]
+Row 6, Column 0: 1.1.
+Row 6, Column 1: Fiziniai asmenys, nevykdantys ekonominės veiklos (nurodoma vardas ir pavardė, asmens kodas)
+1. ___________________________________________________________________
+___________________________________________________________________;
+2. ___________________________________________________________________
+___________________________________________________________________;
+3. ___________________________________________________________________
+___________________________________________________________________;
+Row 7, Column 0: 1.1.
+Row 7, Column 1: susijusia įmone***:
+Susiję asmenys:
+Row 7, Column 2: [ ]
+Row 8, Column 0: 1.1.
+Row 8, Column 1: Juridiniai asmenys (nurodoma pavadinimas, įmonės kodas ir akcijų procentas ir (arba) asmenų, turinčių balsavimo teisę, balsų skaičiaus procentine išraiška):
+1. ___________________________________________________________________
+___________________________________________________________________;
+2. ___________________________________________________________________
+___________________________________________________________________;
+3. _____________________________________________________________________________________________________________________________________;
+Row 8, Column 2: [ ]
+Row 9, Column 0: 1.1.
+Row 9, Column 1: Fiziniai asmenys, vykdantys ekonominę veiklą (nurodoma vardas ir pavardė, asmens kodas, akcijų procentas ir (arba) asmenų, turinčių balsavimo teisę, balsų skaičiaus procentine išraiška, paskutinio metinio  ataskaitinio laikotarpio, kurio finansinės ataskaitos yra patvirtintos, metinio ataskaitinio laikotarpio, ėjusio prieš pirmiau nurodytą ataskaitinį laikotarpį, ir prieš jį ėjusio metinio ataskaitinio laikotarpio apyvarta arba balanse nurodyto turto vertė ir vidutinis metinis darbuotojų skaičius 
+1. ___________________________________________________________________
+___________________________________________________________________;
+2. ___________________________________________________________________
+___________________________________________________________________;
+3. ___________________________________________________________________
+___________________________________________________________________;
+Row 9, Column 2: [ ]
+Row 10, Column 0: 2.
+Row 10, Column 1: Esu labai maža, maža arba vidutinė įmonė – MVĮ**** (pridėjus įmonių partnerių ir susijusių įmonių, jei tokių yra, duomenis)
+Row 10, Column 2: X
+Row 11, Column 0: 3.
+Row 11, Column 1: Vidutinis metinis darbuotojų skaičius (pridėjus įmonių partnerių ir susijusių įmonių, jei tokių yra, duomenis), vnt.
+Row 12, Column 0: 4.
+Row 12, Column 1: Metinė apyvarta arba balanse nurodyto turto vertė (pridėjus įmonių partnerių ir susijusių įmonių, jei tokių yra, duomenis), Eur
+
+Table 4:
+Rows: 10, Columns: 3
+Row 0, Column 0: Pagal reglamento (ES) Nr. 1408/2013 nuostatas, „viena įmonė“ apima visas įmones, kurių tarpusavio santykiai (teisiškai ar de facto) yra bent vienos rūšies iš toliau išvardytų (pildant lentelę visos eilutės turi būti pažymėtos „Taip“ arba „Ne“. Būtina nurodyti visas įmones, kurios laikomos „viena įmone“)
+Row 0, Column 1: Pagal reglamento (ES) Nr. 1408/2013 nuostatas, „viena įmonė“ apima visas įmones, kurių tarpusavio santykiai (teisiškai ar de facto) yra bent vienos rūšies iš toliau išvardytų (pildant lentelę visos eilutės turi būti pažymėtos „Taip“ arba „Ne“. Būtina nurodyti visas įmones, kurios laikomos „viena įmone“)
+Row 0, Column 2: Pagal reglamento (ES) Nr. 1408/2013 nuostatas, „viena įmonė“ apima visas įmones, kurių tarpusavio santykiai (teisiškai ar de facto) yra bent vienos rūšies iš toliau išvardytų (pildant lentelę visos eilutės turi būti pažymėtos „Taip“ arba „Ne“. Būtina nurodyti visas įmones, kurios laikomos „viena įmone“)
+Row 1, Column 0: Eil.
+Nr.
+Row 1, Column 1: Įmonių tarpusavio santykių rūšys
+Row 1, Column 2: Įmonių tarpusavio santykių rūšys
+Row 2, Column 0: 1.
+Row 2, Column 1: Mano įmonė turi kitos įmonės akcininkų arba narių balsų daugumą, arba kita įmonė turi mano įmonės akcininkų arba narių balsų daugumą (Jeigu pažymima „Taip“, žemiau esančioje eilutėje nurodomi įmonių pavadinimai / vardai ir pavardės, įmonių / asmens kodai ir atitinkamai balsų skaičius procentine išraiška)
+Row 2, Column 2: Taip □
+Ne □
+Row 3, Column 0: 1.
+Row 3, Column 1: 1.
+2.
+n.
+Row 3, Column 2: Taip □
+Ne □
+Row 4, Column 0: 2.
+Row 4, Column 1: Mano įmonė turi teisę paskirti arba atleisti daugumą kitos įmonės administracijos, valdymo arba priežiūros organo narių arba kita įmonė turi teisę paskirti arba atleisti daugumą mano įmonės administracijos, valdymo arba priežiūros organo narių (Jeigu pažymima „Taip“, žemiau esančioje eilutėje nurodomas teisinis pagrindas (sutartys, įstatai ar kt.), įmonių pavadinimai / vardai ir pavardės, įmonių / asmens kodai)
+Row 4, Column 2: Taip □
+Ne □
+Row 5, Column 0: 2.
+Row 5, Column 1: 1.
+2.
+n.
+Row 5, Column 2: Taip □
+Ne □
+Row 6, Column 0: 3.
+Row 6, Column 1: Pagal sutartį arba vadovaujantis steigimo sutarties ar įstatų nuostata mano įmonei suteikiama teisė daryti kitai įmonei lemiamą įtaką arba kitai įmonei suteikiama teisė daryti mano įmonei lemiamą įtaką (Jeigu pažymima „Taip“, žemiau esančioje eilutėje nurodomas teisinis pagrindas (sutartys, įstatai ar kt.), įmonių pavadinimai / vardai ir pavardės, įmonių / asmens kodai)
+Row 6, Column 2: Taip □
+Ne □
+Row 7, Column 0: 3.
+Row 7, Column 1: 1.
+2.
+n.
+Row 7, Column 2: Taip □
+Ne □
+Row 8, Column 0: 4.
+Row 8, Column 1: Mano įmonė, būdama kitos įmonės akcininkė arba narė, vadovaudamasi su tos įmonės kitais akcininkais ar nariais sudaryta sutartimi, viena kontroliuoja tos kitos įmonės akcininkų arba narių balsavimo teisių daugumą, arba kita įmonė, būdama mano įmonės akcininkė arba narė, vadovaudamasi su mano įmonės kitais akcininkais ar nariais sudaryta sutartimi, viena kontroliuoja mano įmonės akcininkų arba narių balsavimo teisių daugumą (Jeigu pažymima „Taip“, žemiau esančioje eilutėje nurodomas teisinis pagrindas (sutartys, įstatai ar kt.), įmonių pavadinimai / vardai ir pavardės, įmonių / asmens kodai)
+Row 8, Column 2: Taip □
+Ne □
+Row 9, Column 0: 4.
+Row 9, Column 1: 1.
+2.
+n.
+Row 9, Column 2: Taip □
+Ne □
+
+Table 5:
+Rows: 5, Columns: 3
+Row 0, Column 0: Eil.
+Nr.
+Row 0, Column 1: Įmonių susijungimas, įsigijimas ir skaidymas per einamuosius ir praėjusius dvejus finansinius metus
+Row 0, Column 2: Pažymėti
+Row 1, Column 0: 1.
+Row 1, Column 1: Mano įmonė per einamuosius ir praėjusius  dvejus finansinius metus susijungė su kita įmone arba mano įmonė įsigijo kitą įmonę, arba kita įmonė įsigijo mano įmonę (Jeigu pažymima „Taip“, žemiau esančioje eilutėje nurodomi susijusių įmonių pavadinimai / vardai ir pavardės, įmonių / asmens kodai)
+Row 1, Column 2: Taip □
+Ne □
+Row 2, Column 0: 1.
+Row 2, Column 1: 1.
+2.
+n.
+Row 2, Column 2: Taip □
+Ne □
+Row 3, Column 0: 2.
+Row 3, Column 1: Mano įmonė per einamuosius ir praėjusius dvejus finansinius metus buvo įkurta suskaidžius kitą įmonę (Jeigu pažymima „Taip“, žemiau esančioje eilutėje nurodoma suskaidymo data, suskaidytos įmonės pavadinimas, įmonės kodas, taip pat iki suskaidymo veikusiai įmonei suteiktos nereikšmingos (de minimis) pagalbos (jeigu tokia pagalba buvo suteikta) dydis pagal reglamentą (ES) Nr. 1408/2013 ir kokiai veiklai (jeigu vykdo kelias veiklas) ji buvo panaudota)
+Row 3, Column 2: Taip □
+Ne □
+Row 4, Column 0: 2.
+Row 4, Column 1: 1.
+2.
+n.
+Row 4, Column 2: Taip □
+Ne □
+
+Table 6:
+Rows: 11, Columns: 4
+Row 0, Column 0: 1.
+Row 0, Column 1: Draudimo sutartis arba draudimo paraiška, arba kitas dokumentas, atitinkantis draudimo įmonės pasiūlymą, su visais pakeitimais
+Row 0, Column 3: |_7_|
+Row 1, Column 0: 2.
+Row 1, Column 1: Paskutinio metinio ataskaitinio laikotarpio, kurio finansinės ataskaitos yra patvirtintos, balansas  ir pelno (nuostolio) ataskaita  (teikiama, kai pasirinkta pagalbos forma – valstybės pagalba ir pareiškėjas yra fizinis asmuo)
+Row 1, Column 3: |_7_|
+Row 2, Column 0: 3.
+Row 2, Column 1: Pareiškėjo (kai pasirinkta pagalbos forma – valstybės pagalba ir pareiškėjas yra įmonė partnerė arba susijusi įmonė ir turi susietų fizinių asmenų, vykdančių ekonominę veiklą):
+- susietų fizinių asmenų, vykdančių ekonominę veiklą, paskutinio metinio ataskaitinio laikotarpio, kurio finansinės ataskaitos yra patvirtintos, balansas ir pelno (nuostolio) ataskaita (kai susietas fizinis asmuo tvarko dvejybinę apskaitą) 
+- susietų fizinių asmenų, vykdančių ekonominę veiklą, paskutinio metinio ataskaitinio laikotarpio ir prieš jį ėjusio metinio ataskaitinio laikotarpio Pinigų kasoje,  mokėjimo paslaugų tiekėjo sąskaitose ir pirkimų ir pardavimų apskaitos žurnalas (jei metinis ataskaitinis laikotarpis yra ne vėlesnis kaip 2024 m., gali būti teikiamas Pinigų kasoje, banko sąskaitoje ir pirkimų ir pardavimų apskaitos žurnalas) (kai susietas fizinis asmuo, tvarko apskaitą supaprastintu būdu)
+Row 2, Column 3: |__|__|
+Row 3, Column 0: 4.
+Row 3, Column 1: Įgaliojimas (teikia, jeigu pareiškėjas paraišką pateikia per įgaliotą asmenį):
+Row 3, Column 2: Įgaliojimas (teikia, jeigu pareiškėjas paraišką pateikia per įgaliotą asmenį):
+Row 3, Column 3: Įgaliojimas (teikia, jeigu pareiškėjas paraišką pateikia per įgaliotą asmenį):
+Row 4, Column 0: 4.
+Row 4, Column 1: 4.1. Notaro patvirtintas įgaliojimo dokumentas
+Row 4, Column 3: |__|__|
+Row 5, Column 0: 4.
+Row 5, Column 1: 4.2. Įmonės direktoriaus įsakymu patvirtintas įgaliojimo dokumentas
+Row 5, Column 3: |__|__|
+Row 6, Column 0: 4.
+Row 6, Column 1: 4.3. VĮ Registrų centro registre užregistruoto įgaliojimo kodas, patikrinamas adresu https://igaliojimai.registrucentras.lt/viesa
+Row 6, Column 2: |__|__|__|__|__|__|
+Row 6, Column 3: |__|__|__|__|__|__|
+Row 7, Column 0: 5.
+Row 7, Column 1: Kiti dokumentai, kurie, pareiškėjo nuomone, gali būti svarbūs vertinant paraišką (įrašyti):
+Row 7, Column 2: Kiti dokumentai, kurie, pareiškėjo nuomone, gali būti svarbūs vertinant paraišką (įrašyti):
+Row 7, Column 3: Kiti dokumentai, kurie, pareiškėjo nuomone, gali būti svarbūs vertinant paraišką (įrašyti):
+Row 8, Column 0: 5.
+Row 8, Column 1: 5.1.
+Row 8, Column 3: |__|__|
+Row 9, Column 0: 5.
+Row 9, Column 1: 5.2.
+Row 9, Column 3: |__|__|
+Row 10, Column 0: 5.
+Row 10, Column 1: 5.3.
+Row 10, Column 3: |__|__|
+
+Table 7:
+Rows: 17, Columns: 3
+Row 0, Column 0: Aš, pretenduojantis (-i) gauti draudimo įmokų dalinę kompensaciją (jei subjektas – fizinis asmuo) arba atstovaujantis (-i) įmonei, pretenduojančiai gauti draudimo įmokų dalinę kompensaciją už 2025 m. derliui auginamus augalus, pasirašydamas (-a) patvirtinu, kad draudimo sutarties įsigaliojimo dieną:
+Row 0, Column 1: Aš, pretenduojantis (-i) gauti draudimo įmokų dalinę kompensaciją (jei subjektas – fizinis asmuo) arba atstovaujantis (-i) įmonei, pretenduojančiai gauti draudimo įmokų dalinę kompensaciją už 2025 m. derliui auginamus augalus, pasirašydamas (-a) patvirtinu, kad draudimo sutarties įsigaliojimo dieną:
+Row 0, Column 2: Aš, pretenduojantis (-i) gauti draudimo įmokų dalinę kompensaciją (jei subjektas – fizinis asmuo) arba atstovaujantis (-i) įmonei, pretenduojančiai gauti draudimo įmokų dalinę kompensaciją už 2025 m. derliui auginamus augalus, pasirašydamas (-a) patvirtinu, kad draudimo sutarties įsigaliojimo dieną:
+Row 1, Column 0: 1.
+Row 1, Column 1: Esu susipažinęs (-usi) su Pasėlių ir augalų draudimo įmokų kompensavimo taisyklėmis ir atitinku jų reikalavimus
+Row 1, Column 2: X
+Row 2, Column 0: 2.
+Row 2, Column 1: Aš ir mano sutuoktinis nesame gavę ir negauname paramos pagal Kaimo plėtros 2004–2006 m. plano priemonę „Ankstyvo pasitraukimo iš prekinės žemės ūkio gamybos rėmimas“ ir Lietuvos kaimo plėtros 2007–2013 m. programos priemonę „Ankstyvas pasitraukimas iš prekinės žemės ūkio gamybos“ (taikoma tik fiziniams asmenims)
+Row 2, Column 2: X
+Row 3, Column 0: 3.
+Row 3, Column 1: Užtikrinu, kad prašomos kompensuoti išlaidos nebuvo, nėra ir nebus finansuojamos iš kitų Europos Sąjungos fondų ir (ar) kitų viešųjų lėšų
+Row 3, Column 2: X
+Row 4, Column 0: 4.
+Row 4, Column 1: Nesu gavęs (-usi) neteisėtos valstybės pagalbos, kuri suteikta pagalbos teikėjo Lietuvoje ir Europos Komisijos sprendimu (dėl individualios pagalbos arba pagalbos schemos) buvo pripažinta neteisėta ir nesuderinama su vidaus rinka, arba esu sugrąžinęs/sugrąžinusi visą neteisėtos ir nesuderinamos pagalbos sumą, įskaitant palūkanas, teisės aktuose nustatyta tvarka
+Row 4, Column 2: X
+Row 5, Column 0: 5.
+Row 5, Column 1: Esu informuotas (-a) dėl prievolės pateikti savivaldybės, Agentūros ar Žemės ūkio ministerijos prašomus papildomus su draudimo įmokų kompensavimu susijusius dokumentus jos nustatytais terminais
+Row 5, Column 2: X
+Row 6, Column 0: 6.
+Row 6, Column 1: Esu informuotas (-a), kad savivaldybė ir Agentūra mano asmeninius ir kitus duomenis, susijusius su pagalbos administravimo klausimais, tikrins ir gaus iš kitų juridinių asmenų, valstybinių registrų ir duomenų bazių. Esu informuotas (-a), kad esu atsakingas (-a) už reikiamų dokumentų ir (arba) pažymų pateikimą laiku
+Row 6, Column 2: X
+Row 7, Column 0: 7.
+Row 7, Column 1: Įsipareigoju informuoti savivaldybę apie nutrauktą ir (arba) patikslintą draudimo sutartį
+Row 7, Column 2: X
+Row 8, Column 0: 8.
+Row 8, Column 1: Įsipareigoju, gavęs (-usi) Agentūros reikalavimą (raštą, pranešimą) dėl pagalbos, jos dalies ar permokos grąžinimo, per reikalavime nurodytą terminą grąžinti į Agentūros sąskaitą nurodytą sumą ir sumokėti palūkanas (jei reikia)
+Row 8, Column 2: X
+Row 9, Column 0: 9.
+Row 9, Column 1: Įsipareigoju, tuo atveju, jei nuo paraiškos pateikimo iki sprendimo skirti pagalbą priėmimo mano įmonė susijungia su kita įmone, vyksta įmonių įsigijimas ar suskaidymas, pateikti tai pagrindžiančią informaciją ir (ar) dokumentus.	[ ]
+Row 9, Column 2: X
+Row 10, Column 0: 10.
+Row 10, Column 1: Esu informuotas (-a), kad:
+- paraiškoje bei kituose savivaldybei ir Agentūrai teikiamuose dokumentuose esantys mano asmens ir kiti duomenys bus tvarkomi ir saugomi pagalbos administravimo informacinėse sistemose;
+- asmens duomenų valdytojas yra savivaldybė ir Agentūra;
+- Agentūros tvarkomi mano asmens duomenys (kategorijos) bei detalesnė informacija apie mano asmens duomenų tvarkymą yra nurodyta www.nma.lt skiltyje „Asmens duomenų apsauga“;
+- mano asmens duomenys yra saugomi iki išmokų mokėjimo, administravimo ir priežiūros laikotarpio pabaigos, vėliau šie duomenys archyvuojami bei perduodami valstybės archyvams.
+Row 10, Column 2: X
+Row 11, Column 0: 11.
+Row 11, Column 1: Esu informuotas (-a), kad:
+-	turiu teisę žinoti apie savo asmens duomenų tvarkymą, susipažinti su tvarkomais savo asmens duomenimis ir kaip jie yra tvarkomi, reikalauti ištaisyti, ištrinti savo asmens duomenis („teisė būti pamirštam“), apriboti savo asmens duomenų tvarkymą, kai duomenys tvarkomi nesilaikant ES ir Lietuvos Respublikos teisės aktų nuostatų, taip pat nesutikti (teisiškai pagrindžiant), kad būtų tvarkomi mano asmens duomenys, bei teisę į duomenų perkeliamumą;
+-	mano asmens duomenys yra tvarkomi šiais asmens duomenų tvarkymo tikslais bei teisiniais pagrindais: asmens, teikiančio pagalbos paraišką, tapatybės nustatymo, pagalbos administravimo, mokėjimo ir kontrolės, pagalbos viešinimo tikslais įgyvendinant Reglamentą (ES) 2022/2472, Bendrąsias administravimo taisykles, Taisykles.
+Row 11, Column 2: X
+Row 12, Column 0: 12.
+Row 12, Column 1: Esu informuotas (-a) dėl prievolės ne mažiau kaip 10 metų nuo sprendimo dėl pagalbos skyrimo priėmimo dienos saugoti su augalų draudimu bei draudimo įmokų kompensavimu susijusius dokumentus
+Row 12, Column 2: X
+Row 13, Column 0: 13.
+Row 13, Column 1: Nesu sunkumų patirianti įmonė, kaip apibrėžta Reglamento (ES) 2022/2472 2 straipsnio 59 punkte***** ( taikoma, kai pasirinkta pagalbos forma – valstybės pagalba)
+Row 13, Column 2: X
+Row 14, Column 0: 14.
+Row 14, Column 1: Nesu gavęs sanavimo pagalbos arba esu grąžinęs skolą ar baigėsi jos garantijos galiojimas, ir nesu gavęs restruktūrizavimo pagalbos arba esu gavęs restruktūrizavimo pagalbą,  bet jau nebeįgyvendinu restruktūrizavimo plano (taikoma juridiniam asmeniui)
+Row 14, Column 2: X
+Row 15, Column 0: 15.
+Row 15, Column 1: Esu informuotas (-a), kad visa informacija, susijusi su paraiškos administravimu, man bus teikiama paraiškoje pasirinktu informavimo būdu
+Row 15, Column 2: X
+Row 16, Column 0: 16.
+Row 16, Column 1: Šioje paraiškoje ir pateiktuose dokumentuose nurodyta informacija, mano žiniomis ir įsitikinimu, yra teisinga
+Row 16, Column 2: X
+(venv) 206753750 ~/Desktop/Lauris/templates  $ #
