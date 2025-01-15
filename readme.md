@@ -315,8 +315,7 @@ pip install PyMuPDF python-docx reportlab
 
 ## Contact & Support
 
-For installation assistance and bug reports, please contact support.
-
+NA
 
 
 
