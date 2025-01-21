@@ -24,13 +24,20 @@ class PDFHandler:
             return False
 
     @staticmethod
-    def add_text_to_pdf(template_path: Path, output_path: Path, text: str, page_number: int, x: float, y: float) -> bool:
+    def add_text_to_pdf(template_path: Path, case_folder: Path, text: str, page_number: int, x: float, y: float) -> bool:
         """Add text to PDF at specified coordinates."""
         try:
-            # Copy template to new location
-            shutil.copy2(template_path, output_path)
+            # Create output path for the case folder
+            output_path = case_folder / template_path.name
             
-            # Open the copied file and add text
+            # If this is the first time adding text to this case, copy the template
+            if not output_path.exists():
+                # Ensure case folder exists
+                case_folder.mkdir(parents=True, exist_ok=True)
+                # Copy template to case folder
+                shutil.copy2(template_path, output_path)
+            
+            # Open the case's PDF and add text
             with fitz.open(output_path) as pdf_document:
                 page = pdf_document[page_number]
                 page.insert_text((x, y), text)
@@ -45,8 +52,7 @@ class PDFHandler:
 
     @staticmethod
     def create_case_folder(base_dir: Path, case_name: str) -> Path:
-        """Create a case folder with timestamp."""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        case_folder = base_dir / f"{case_name}_{timestamp}"
+        """Create a case folder."""
+        case_folder = base_dir / case_name
         case_folder.mkdir(parents=True, exist_ok=True)
         return case_folder
