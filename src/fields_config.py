@@ -7,12 +7,5 @@ PDF_FIELDS = {
         "page": 0,             # Page number (0-based)
         "x": 100,              # X coordinate
         "y": 100               # Y coordinate
-    },
-    # Example of another field:
-    # "company_name": {
-    #     "name": "Company Name",
-    #     "page": 0,
-    #     "x": 150,
-    #     "y": 200
-    # }
+    }
 }
