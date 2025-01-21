@@ -1,3 +1,10 @@
-*.pyc
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+
+# pip installer
+get-pip.py
+
+# macOS system files
 .DS_Store
