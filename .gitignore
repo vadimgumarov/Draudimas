@@ -8,3 +8,7 @@ get-pip.py
 
 # macOS system files
 .DS_Store
+
+# Project specific
+cases/
+cases/**
