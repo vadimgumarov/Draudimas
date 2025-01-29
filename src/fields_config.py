@@ -33,11 +33,9 @@ PDF_COORDINATES = {
 # Coordinates for Word templates (table, row, column)
 WORD_COORDINATES = {
     "Europos_paramos_paraiška_KPP.docx": {
-        "asmens_kodas": {"table": 0, "row": 1, "col": 1},
-        "pavarde_imone": {"table": 0, "row": 2, "col": 1}
+        "asmens_kodas": {"table": 3, "row": 2, "col": 1}
     },
     "NAC paraiška 2025.docx": {
-        "asmens_kodas": {"table": 0, "row": 1, "col": 1},
-        "pavarde_imone": {"table": 0, "row": 2, "col": 1}
+        "asmens_kodas": {"table": 0, "row": 2, "col": 1}
     }
 }
