@@ -36,7 +36,7 @@ WORD_COORDINATES = {
         "asmens_kodas": {"table": 0, "row": 1, "col": 1},
         "pavarde_imone": {"table": 0, "row": 2, "col": 1}
     },
-    "NAC_paraiška_2025.docx": {
+    "NAC paraiška 2025.docx": {
         "asmens_kodas": {"table": 0, "row": 1, "col": 1},
         "pavarde_imone": {"table": 0, "row": 2, "col": 1}
     }
