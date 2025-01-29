@@ -56,10 +56,18 @@ class WordHandler:
             if col >= len(table_obj.rows[row].cells):
                 raise Exception(f"Column {col} out of range (row has {len(table_obj.rows[row].cells)} cells)")
             
-            # Add text to specified cell
+            # Add text to specified cell while preserving existing content
             cell = table_obj.rows[row].cells[col]
-            print(f"Debug: Current cell content: '{cell.text}'")
-            cell.text = text
+            existing_text = cell.text.strip()
+            print(f"Debug: Current cell content: '{existing_text}'")
+            
+            # Add a space between existing text and new text if there is existing text
+            if existing_text:
+                new_text = f"{existing_text} {text}"
+            else:
+                new_text = text
+                
+            cell.text = new_text
             print(f"Debug: Updated cell content: '{cell.text}'")
             
             # Save the document
