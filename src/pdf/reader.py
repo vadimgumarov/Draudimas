@@ -1,4 +1,5 @@
 # src/pdf/reader.py
+import sys
 from pathlib import Path
 import fitz
 import shutil
@@ -10,17 +11,17 @@ class PDFHandler:
         """Read a PDF file and verify it can be opened."""
         try:
             if not pdf_path.exists():
-                print(f"Debug: File not found at path: {pdf_path}")
+                print(f"Error: File not found: {pdf_path}")
                 return False
                 
-            with fitz.open(pdf_path) as pdf_document:
+            with fitz.open(str(pdf_path)) as pdf_document:
                 page_count = len(pdf_document)
-                print(f"Debug: Successfully opened PDF: {pdf_path.name}")
-                print(f"Debug: Number of pages: {page_count}")
+                print(f"Successfully opened PDF: {pdf_path.name}")
+                print(f"Number of pages: {page_count}")
                 return True
                 
         except Exception as e:
-            print(f"Debug: Error in read_pdf: {str(e)}")
+            print(f"Error: {str(e)}")
             return False
 
     @staticmethod
@@ -28,29 +29,36 @@ class PDFHandler:
         """Add text to PDF at specified coordinates."""
         try:
             output_path = case_folder / template_path.name
-            print(f"Debug: Attempting to process PDF:")
-            print(f"Debug: Template path: {template_path}")
+            print(f"Debug: Processing template: {template_path.name}")
             print(f"Debug: Output path: {output_path}")
-            print(f"Debug: Text to add: {text}")
-            print(f"Debug: Page number: {page_number}")
-            print(f"Debug: Coordinates: ({x}, {y})")
             
             # If this is the first time adding text to this case, copy the template
             if not output_path.exists():
                 print("Debug: Creating new copy of template")
                 case_folder.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(template_path, output_path)
+                shutil.copy2(str(template_path), str(output_path))
                 print("Debug: Template copied successfully")
-            else:
-                print("Debug: Using existing PDF in case folder")
             
             # Open and modify the PDF
             print("Debug: Opening PDF for modification")
-            with fitz.open(output_path) as pdf_document:
+            with fitz.open(str(output_path)) as pdf_document:
                 print(f"Debug: Successfully opened PDF, pages: {len(pdf_document)}")
                 page = pdf_document[page_number]
                 print("Debug: Adding text to page")
-                page.insert_text((x, y), text)
+                
+                # Create text using insert_text
+                rc = page.insert_text(
+                    point=(x, y),  # position on page
+                    text=text,  # the text
+                    fontsize=11,  # font size
+                    fontname="helv",  # font name
+                    rotate=0,  # rotation in degrees
+                    morph=None  # no morphing
+                )
+                
+                if not rc:  # text insertion failed
+                    raise Exception("Text insertion failed")
+                    
                 print("Debug: Text inserted, attempting to save")
                 pdf_document.save(str(output_path), incremental=True, encryption=0)
                 print("Debug: PDF saved successfully")
@@ -58,7 +66,6 @@ class PDFHandler:
             return True
             
         except Exception as e:
-            print(f"Debug: Error details in add_text_to_pdf:")
             print(f"Debug: Exception type: {type(e).__name__}")
             print(f"Debug: Exception message: {str(e)}")
             print(f"Debug: Current path exists: {output_path.exists()}")
