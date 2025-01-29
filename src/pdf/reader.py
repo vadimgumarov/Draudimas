@@ -48,12 +48,11 @@ class PDFHandler:
                 
                 # Create text using insert_text
                 rc = page.insert_text(
-                    point=(x, y),  # position on page
-                    text=text,  # the text
-                    fontsize=11,  # font size
-                    fontname="helv",  # font name
-                    rotate=0,  # rotation in degrees
-                    morph=None  # no morphing
+                    point=(x, y),
+                    text=text,
+                    fontsize=11,
+                    fontname="helv",
+                    rotate=0
                 )
                 
                 if not rc:  # text insertion failed
