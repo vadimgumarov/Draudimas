@@ -41,6 +41,12 @@ class PDFHandler:
             
             # Open and modify the PDF
             print("Debug: Opening PDF for modification")
+            doc_opts = {
+                "clean": True,
+                "deflate": True,
+                "garbage": 4
+            }
+            
             with fitz.open(str(output_path)) as pdf_document:
                 print(f"Debug: Successfully opened PDF, pages: {len(pdf_document)}")
                 page = pdf_document[page_number]
@@ -59,8 +65,25 @@ class PDFHandler:
                     raise Exception("Text insertion failed")
                     
                 print("Debug: Text inserted, attempting to save")
-                pdf_document.save(str(output_path), incremental=True, encryption=0)
-                print("Debug: PDF saved successfully")
+                
+                # First try with incremental update
+                try:
+                    pdf_document.save(str(output_path), incremental=True, encryption=0)
+                    print("Debug: PDF saved successfully with incremental update")
+                except Exception as e:
+                    print(f"Debug: Incremental save failed: {str(e)}")
+                    print("Debug: Attempting full save")
+                    # If incremental update fails, try full save with cleanup
+                    pdf_document.save(
+                        str(output_path), 
+                        incremental=False,
+                        encryption=0,
+                        clean=True,
+                        deflate=True,
+                        garbage=4,
+                        pretty=True
+                    )
+                    print("Debug: PDF saved successfully with full save")
             
             return True
             
