@@ -1,29 +1,29 @@
 # src/fields_config.py
 
-# Field coordinates for Dr_paraiska_2025.pdf
-PDF_FIELDS = {
-    "asmens_kodas": {
-        "name": "Asmens Kodas / Imones kodas ",  # Display name in GUI
-        "page": 1,             # Page number (0-based)
-        "x": 167,              # X coordinate
-        "y": 183               # Y coordinate
+# Common fields and their display names
+FIELD_NAMES = {
+    "asmens_kodas": "Asmens Kodas / Imones kodas",
+    "pavarde_imone": "Pavarde / Imones Pavadinimas",
+    "vardas": "Vardas",
+    "gimimo_data": "Gimimo Data"
+}
+
+# Field coordinates for each template
+TEMPLATE_COORDINATES = {
+    "Dr_paraiska_2025.pdf": {
+        "asmens_kodas": {"page": 1, "x": 167, "y": 183},
+        "pavarde_imone": {"page": 1, "x": 40, "y": 205},
+        "vardas": {"page": 1, "x": 40, "y": 232},
+        "gimimo_data": {"page": 1, "x": 480, "y": 232}
     },
-    "pavarde_imone": {
-        "name": "Pavarde / Imones Pavadinimas",  # Display name in GUI
-        "page": 1,             # Page number (0-based)
-        "x": 40,              # X coordinate
-        "y": 205               # Y coordinate
+    "Paseliu_sarasas_2025.pdf": {
+        "asmens_kodas": {"page": 0, "x": 545, "y": 98},
+        "pavarde_imone": {"page": 0, "x": 35, "y": 98}
+        # Add other coordinates as needed
     },
-    "vadras": {
-        "name": "Vardas",  # Display name in GUI
-        "page": 1,             # Page number (0-based)
-        "x": 40,              # X coordinate
-        "y": 232               # Y coordinate
-    },
-    "gimimo_data": {
-        "name": "Gimimo Data",  # Display name in GUI
-        "page": 1,             # Page number (0-based)
-        "x": 480,              # X coordinate
-        "y": 232               # Y coordinate
+    "Paseliu_sarasas_JAVAI_2025.pdf": {
+        "asmens_kodas": {"page": 0, "x": 545, "y": 98},
+        "pavarde_imone": {"page": 0, "x": 35, "y": 98}
+        # Add other coordinates as needed
     }
 }

@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from pathlib import Path
-from src.fields_config import PDF_FIELDS
+from src.fields_config import FIELD_NAMES
 
 class DraudimasGUI:
     def __init__(self, root, on_submit):
@@ -14,7 +14,7 @@ class DraudimasGUI:
         main_frame = ttk.Frame(root, padding="10")
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
         
-        # Case Number (always first)
+        # Case Number
         ttk.Label(main_frame, text="Case Number:").grid(row=0, column=0, sticky=tk.W, pady=5)
         self.case_number = ttk.Entry(main_frame, width=40)
         self.case_number.grid(row=0, column=1, sticky=tk.W, pady=5)
@@ -22,16 +22,16 @@ class DraudimasGUI:
         # Dictionary to store field entries
         self.field_entries = {}
         
-        # Create fields dynamically from PDF_FIELDS
-        for i, (field_id, field_info) in enumerate(PDF_FIELDS.items(), start=1):
-            ttk.Label(main_frame, text=field_info["name"]+":").grid(row=i, column=0, sticky=tk.W, pady=5)
+        # Create fields
+        for i, (field_id, field_name) in enumerate(FIELD_NAMES.items(), start=1):
+            ttk.Label(main_frame, text=field_name+":").grid(row=i, column=0, sticky=tk.W, pady=5)
             entry = ttk.Entry(main_frame, width=40)
             entry.grid(row=i, column=1, sticky=tk.W, pady=5)
             self.field_entries[field_id] = entry
         
-        # Submit Button (after all fields)
+        # Submit Button
         submit_btn = ttk.Button(main_frame, text="Submit", command=self.submit)
-        submit_btn.grid(row=len(PDF_FIELDS)+1, column=0, columnspan=2, pady=20)
+        submit_btn.grid(row=len(FIELD_NAMES)+1, column=0, columnspan=2, pady=20)
 
     def submit(self):
         # Basic validation
@@ -47,7 +47,8 @@ class DraudimasGUI:
         for field_id, entry in self.field_entries.items():
             value = entry.get().strip()
             if not value:
-                messagebox.showerror("Error", f"{PDF_FIELDS[field_id]['name']} must be filled")
+                field_name = FIELD_NAMES[field_id]
+                messagebox.showerror("Error", f"{field_name} must be filled")
                 return
             form_data[field_id] = value
         
