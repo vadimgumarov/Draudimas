@@ -1,6 +1,6 @@
 # test_word.py
 from pathlib import Path
-from src.word.reader import WordHandler
+from src.word.word_reader import WordHandler
 from src.config import TEMPLATES_LT_DIR
 
 def main():
