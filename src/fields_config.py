@@ -8,26 +8,36 @@ FIELD_NAMES = {
     "gimimo_data": "Gimimo Data"
 }
 
-# Field coordinates for each template
-TEMPLATE_COORDINATES = {
-    "Dr_paraiska_2025.pdf": {
+# Coordinates for PDF templates
+PDF_COORDINATES = {
+    "Dr_paraiška_2025.pdf": {
         "asmens_kodas": {"page": 1, "x": 167, "y": 183},
         "pavarde_imone": {"page": 1, "x": 40, "y": 205},
         "vardas": {"page": 1, "x": 40, "y": 232},
         "gimimo_data": {"page": 1, "x": 480, "y": 232}
     },
-    "Paseliu_sarasas_2025.pdf": {
+    "Pasėlių_sąrašas_2025.pdf": {
         "asmens_kodas": {"page": 0, "x": 545, "y": 98},
         "pavarde_imone": {"page": 0, "x": 35, "y": 98}
-        # Add other coordinates as needed
     },
-    "Paseliu_sarasas_JAVAI_2025.pdf": {
+    "Pasėlių_sąrašas_JAVAI_2025.pdf": {
         "asmens_kodas": {"page": 0, "x": 545, "y": 98},
         "pavarde_imone": {"page": 0, "x": 35, "y": 98}
-        # Add other coordinates as needed
     },
     "Pasėlių_sąrašas_ANKŠTINIAI_2025.pdf": {
         "asmens_kodas": {"page": 0, "x": 545, "y": 98},
         "pavarde_imone": {"page": 0, "x": 35, "y": 98}
+    }
+}
+
+# Coordinates for Word templates (table, row, column)
+WORD_COORDINATES = {
+    "Europos_paramos_paraiška_KPP.docx": {
+        "asmens_kodas": {"table": 0, "row": 1, "col": 1},
+        "pavarde_imone": {"table": 0, "row": 2, "col": 1}
+    },
+    "NAC_paraiška_2025.docx": {
+        "asmens_kodas": {"table": 0, "row": 1, "col": 1},
+        "pavarde_imone": {"table": 0, "row": 2, "col": 1}
     }
 }
