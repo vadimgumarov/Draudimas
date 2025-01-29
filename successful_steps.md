@@ -1,78 +1,79 @@
 # Successful Steps
 
-## Step 1: Environment Setup (macOS)
+## Environment Setup (macOS)
 1. Install required packages via Homebrew:
 ```bash
 brew install pymupdf
 ```
 NOTE: Do not use pip install as macOS uses externally managed environment
 
-## Step 2: Project Structure
-1. Create project directories:
+## Project Structure
+Current working structure:
 ```
 project_root/
-├── draudimas.py        # Main entry point
+├── draudimas.py         # Main entry point
 ├── src/
 │   ├── __init__.py    
-│   ├── config.py      # Global settings
+│   ├── config.py       # Path configurations
+│   ├── fields_config.py # PDF field coordinates
+│   ├── gui/
+│   │   ├── __init__.py
+│   │   └── form.py     # GUI implementation
 │   └── pdf/           
 │       ├── __init__.py
-│       └── reader.py  
-├── templates/         # English templates
-└── templates_lt/      # Lithuanian templates
+│       └── reader.py   # PDF handling functions
+├── templates/          # Template directory
+└── templates_lt/       # Lithuanian templates
 ```
 
-## Step 3: Git Setup
-1. Initialize repository:
-```bash
-git init
-```
-2. Create dev branch:
-```bash
-git checkout -b dev
-```
-
-## Step 4: Create Initial Files
-1. Create config.py with global paths:
-```python
-# src/config.py
-from pathlib import Path
-
-PROJECT_DIR = Path("/Users/vadim/Desktop/Projects/Draudimas")
-TEMPLATES_DIR = PROJECT_DIR / "templates"
-TEMPLATES_LT_DIR = PROJECT_DIR / "templates_lt"
-```
-
-2. Create PDF reader with basic functionality:
-```python
-# src/pdf/reader.py
-from pathlib import Path
-import fitz
-
-class PDFHandler:
-    @staticmethod
-    def read_pdf(pdf_path: Path) -> bool:
-        # Basic PDF reading functionality
-        ...
-```
+## Git Setup and Management
+1. Created and using dev branch
+2. .gitignore configured to exclude:
+   - Python cache files (__pycache__/, *.pyc)
+   - get-pip.py
+   - macOS system files (.DS_Store)
+   - cases directory (output files)
 
 ## Working Features
-1. PDF Reading:
-   - Opens PDF successfully
-   - Reads metadata
-   - Gets page count
-   - Basic error handling
+1. PDF Processing:
+   - Successfully opens and reads PDFs
+   - Creates copies in case folders
+   - Adds text at specified coordinates
+   - Error handling and debugging implemented
 
-## Failed Attempts/Issues
-1. pip installations fail due to macOS external environment
-   - Solution: Use Homebrew instead
+2. GUI Interface:
+   - Dynamic form generation from field configuration
+   - Input validation for all fields
+   - Success/error message handling
+   - Responsive layout
+
+3. Configuration System:
+   - Separate path configurations (config.py)
+   - Field coordinates in dedicated file (fields_config.py)
+   - Current working fields:
+     - Asmens Kodas / Imones kodas
+     - Pavarde / Imones Pavadinimas
+     - Vardas
+     - Gimimo Data
+
+## Resolved Issues
+1. Package installation on macOS:
+   - Solution: Using Homebrew instead of pip
+2. PDF text insertion:
+   - Solution: Added incremental=True to PDF save operation
+3. File organization:
+   - Solution: Separated configurations into distinct files
+4. Case file handling:
+   - Solution: Implemented proper file copying and modification
 
 ## Next Steps
-1. Add coordinate mapping for form fields
-2. Implement text insertion capability
-3. Add configuration for field positions
+1. Add more fields to the form as needed
+2. Test text placement accuracy for all fields
+3. Add support for Lithuanian characters
+4. Consider additional PDF templates
 
-## Git Usage
-- Work in dev branch
-- Commit after each working change
-- Merge to main only after feature is fully tested
+## Development Workflow
+1. Work in dev branch
+2. Test thoroughly before committing
+3. Regular commits with descriptive messages
+4. Merge to main only when features are complete
