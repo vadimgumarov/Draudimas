@@ -25,5 +25,9 @@ TEMPLATE_COORDINATES = {
         "asmens_kodas": {"page": 0, "x": 545, "y": 98},
         "pavarde_imone": {"page": 0, "x": 35, "y": 98}
         # Add other coordinates as needed
+    },
+    "Pasėlių_sąrašas_ANKŠTINIAI_2025.pdf": {
+        "asmens_kodas": {"page": 0, "x": 545, "y": 98},
+        "pavarde_imone": {"page": 0, "x": 35, "y": 98}
     }
 }
