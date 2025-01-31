@@ -1,79 +1,164 @@
 # Successful Steps
 
-## Environment Setup (macOS)
-1. Install required packages via Homebrew:
+## Project Overview
+A document automation application that fills in multiple document types (PDF and Word) with the same input data. The application uses a GUI interface for data entry and handles both PDF and Word documents simultaneously.
+
+## Development Environment Setup (macOS)
+1. Package Management:
 ```bash
-brew install pymupdf
+# Install required packages via Homebrew
+brew install pymupdf     # For PDF handling
+brew install pandoc      # For document conversions
 ```
-NOTE: Do not use pip install as macOS uses externally managed environment
+
+2. Python Virtual Environment:
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate
+
+# Install required Python packages
+pip install python-docx  # For Word document handling
+```
 
 ## Project Structure
-Current working structure:
 ```
 project_root/
 ├── draudimas.py         # Main entry point
 ├── src/
 │   ├── __init__.py    
 │   ├── config.py       # Path configurations
-│   ├── fields_config.py # PDF field coordinates
+│   ├── fields_config.py # Field coordinates for documents
 │   ├── gui/
 │   │   ├── __init__.py
 │   │   └── form.py     # GUI implementation
-│   └── pdf/           
+│   ├── pdf/           
+│   │   ├── __init__.py
+│   │   └── pdf_reader.py   # PDF handling functions
+│   └── word/
 │       ├── __init__.py
-│       └── reader.py   # PDF handling functions
+│       ├── word_reader.py  # Word document handling
+│       └── word_table_inspector.py  # Utility for finding table coordinates
 ├── templates/          # Template directory
-└── templates_lt/       # Lithuanian templates
+│   ├── Dr_paraiška_2025.pdf
+│   ├── Pasėlių_sąrašas_2025.pdf
+│   ├── Pasėlių_sąrašas_JAVAI_2025.pdf
+│   └── Pasėlių_sąrašas_ANKŠTINIAI_2025.pdf
+└── cases/             # Output directory for processed documents
 ```
 
-## Git Setup and Management
-1. Created and using dev branch
-2. .gitignore configured to exclude:
-   - Python cache files (__pycache__/, *.pyc)
-   - get-pip.py
-   - macOS system files (.DS_Store)
-   - cases directory (output files)
+## Git Workflow
+1. Main Branch Organization:
+   - main: Stable, production-ready code
+   - dev: Development branch, base for feature branches
+   - feature branches: Individual features (e.g., feature/word-support)
 
-## Working Features
-1. PDF Processing:
-   - Successfully opens and reads PDFs
-   - Creates copies in case folders
-   - Adds text at specified coordinates
-   - Error handling and debugging implemented
+2. Branch Strategy:
+```bash
+# Create feature branch
+git checkout -b feature/name
 
-2. GUI Interface:
-   - Dynamic form generation from field configuration
-   - Input validation for all fields
-   - Success/error message handling
-   - Responsive layout
+# After feature completion
+git checkout main
+git merge feature/name
 
-3. Configuration System:
-   - Separate path configurations (config.py)
-   - Field coordinates in dedicated file (fields_config.py)
-   - Current working fields:
-     - Asmens Kodas / Imones kodas
-     - Pavarde / Imones Pavadinimas
-     - Vardas
-     - Gimimo Data
+# Return to dev for new development
+git checkout dev
+```
 
-## Resolved Issues
-1. Package installation on macOS:
-   - Solution: Using Homebrew instead of pip
-2. PDF text insertion:
-   - Solution: Added incremental=True to PDF save operation
-3. File organization:
-   - Solution: Separated configurations into distinct files
-4. Case file handling:
-   - Solution: Implemented proper file copying and modification
+## Implemented Features
+
+### 1. PDF Document Handling
+- PDF text insertion at specific coordinates
+- UTF-8 support for Lithuanian characters
+- Template copying to case folders
+- Coordinate-based text placement
+- Error handling and debugging information
+
+### 2. Word Document Handling
+- Table cell modifications
+- Preservation of existing cell content
+- Automated template copying
+- Structural document navigation (tables, rows, cells)
+- Debugging tools for locating table coordinates
+
+### 3. GUI Interface
+- Dynamic form generation from configuration
+- Field validation
+- Success/error message handling
+- Common input for both PDF and Word documents
+
+### 4. Configuration System
+- Separate path configurations (config.py)
+- Field coordinates for PDF files
+- Table coordinates for Word documents
+- Common field definitions
+
+## Document Field Configuration
+Located in fields_config.py:
+```python
+# Common fields
+FIELD_NAMES = {
+    "asmens_kodas": "Asmens Kodas / Imones kodas",
+    "pavarde_imone": "Pavarde / Imones Pavadinimas",
+    "vardas": "Vardas",
+    "gimimo_data": "Gimimo Data"
+}
+
+# PDF coordinates
+PDF_COORDINATES = {
+    "Dr_paraiška_2025.pdf": {
+        "asmens_kodas": {"page": 1, "x": 167, "y": 183},
+        # Additional fields...
+    }
+}
+
+# Word document coordinates
+WORD_COORDINATES = {
+    "Europos_paramos_paraiška_KPP.docx": {
+        "asmens_kodas": {"table": 3, "row": 2, "col": 1}
+    }
+}
+```
+
+## Development Notes
+1. File Management:
+   - Keep consistent file naming
+   - Use absolute paths in configuration
+   - Handle UTF-8 filenames properly
+
+2. Code Organization:
+   - Separate functionality into modules
+   - Keep main file minimal
+   - Use consistent naming conventions
+
+3. Error Handling:
+   - Comprehensive error checking
+   - Detailed debug information
+   - User-friendly error messages
 
 ## Next Steps
-1. Add more fields to the form as needed
-2. Test text placement accuracy for all fields
-3. Add support for Lithuanian characters
-4. Consider additional PDF templates
+1. Standalone Application Development:
+   - PyInstaller setup for macOS
+   - Windows compatibility
+   - Distribution packaging
 
-## Development Workflow
-1. Work in dev branch
-2. Test thoroughly before committing
-3. Regular commits with descriptive messages
-4. Merge to main only when features are complete
+## Common Issues and Solutions
+1. macOS Package Management:
+   - Use Homebrew for system packages
+   - Use pip in virtual environment for Python packages
+   - Handle externally-managed environment restrictions
+
+2. Document Processing:
+   - PDF layer warnings can be ignored if functionality works
+   - Word documents require table cell preservation
+   - Handle both static (PDF) and dynamic (Word) layouts
+
+## Testing
+To verify functionality:
+1. Create test case with all field types
+2. Check both PDF and Word outputs
+3. Verify text placement and formatting
+4. Ensure Lithuanian characters display correctly
