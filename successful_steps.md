@@ -1,251 +1,246 @@
-# Successful Steps
+# Technical Implementation Guide
 
-## Project Overview
-A document automation application that fills in multiple document types (PDF and Word) with the same input data. The application uses a GUI interface for data entry and handles both PDF and Word documents simultaneously.
+## System Architecture
 
-## Development Environment Setup (macOS)
-1. Package Management:
+### Core Components
+The system implements a modular architecture with clear separation of concerns:
+
+1. Configuration Layer
+   - Environment configuration
+   - Field definitions
+   - Coordinate mappings
+   - Path management
+
+2. Processing Layer
+   - PDF document handling
+   - Word document processing
+   - Template management
+   - Output generation
+
+3. Presentation Layer
+   - Dynamic form generation
+   - User input handling
+   - Validation
+   - Feedback system
+
+### Implementation Details
+
+#### Environment Setup
 ```bash
-# Install required packages via Homebrew
-brew install pymupdf     # For PDF handling
-<<<<<<< HEAD
-brew install pandoc      # For document conversions
-=======
->>>>>>> dev
-```
-
-2. Python Virtual Environment:
-```bash
-# Create virtual environment
+# Development Environment
 python3 -m venv venv
-
-# Activate virtual environment
 source venv/bin/activate
 
-<<<<<<< HEAD
-# Install required Python packages
-pip install python-docx  # For Word document handling
-=======
-# PyInstaller for creating standalone app
-pip install pyinstaller
->>>>>>> dev
+# Core Dependencies
+brew install pymupdf  # macOS PDF processing
+pip install python-docx  # Word processing
+pip install pyinstaller  # Standalone builds
 ```
 
-## Project Structure
-```
-project_root/
-├── draudimas.py          # Main entry point
-├── draudimas.spec        # PyInstaller specification
-├── src/
-│   ├── __init__.py    
-<<<<<<< HEAD
-│   ├── config.py       # Path configurations
-=======
-│   ├── config.py        # Path configurations
->>>>>>> dev
-│   ├── fields_config.py # Field coordinates for documents
-│   ├── gui/
-│   │   ├── __init__.py
-│   │   └── form.py     # GUI implementation
-│   ├── pdf/           
-│   │   ├── __init__.py
-│   │   └── pdf_reader.py   # PDF handling functions
-│   └── word/
-│       ├── __init__.py
-<<<<<<< HEAD
-│       ├── word_reader.py  # Word document handling
-│       └── word_table_inspector.py  # Utility for finding table coordinates
-├── templates/          # Template directory
-=======
-│       └── word_reader.py  # Word document handling
-├── templates/           # Template directory
->>>>>>> dev
-│   ├── Dr_paraiška_2025.pdf
-│   ├── Pasėlių_sąrašas_2025.pdf
-│   ├── Pasėlių_sąrašas_JAVAI_2025.pdf
-│   └── Pasėlių_sąrašas_ANKŠTINIAI_2025.pdf
-<<<<<<< HEAD
-└── cases/             # Output directory for processed documents
-=======
-└── cases/              # Output directory for processed documents
->>>>>>> dev
-```
-
-## Git Workflow
-1. Main Branch Organization:
-   - main: Stable, production-ready code
-   - dev: Development branch, base for feature branches
-<<<<<<< HEAD
-   - feature branches: Individual features (e.g., feature/word-support)
-=======
-   - feature branches: Individual features (e.g., feature/standalone-mac)
->>>>>>> dev
-
-2. Branch Strategy:
-```bash
-# Create feature branch
-git checkout -b feature/name
-
-# After feature completion
-git checkout main
-git merge feature/name
-
-# Return to dev for new development
-git checkout dev
-```
-
-## Implemented Features
-<<<<<<< HEAD
-
-### 1. PDF Document Handling
-- PDF text insertion at specific coordinates
-- UTF-8 support for Lithuanian characters
-- Template copying to case folders
-- Coordinate-based text placement
-- Error handling and debugging information
-
-### 2. Word Document Handling
-- Table cell modifications
-- Preservation of existing cell content
-- Automated template copying
-- Structural document navigation (tables, rows, cells)
-- Debugging tools for locating table coordinates
-
-### 3. GUI Interface
-- Dynamic form generation from configuration
-- Field validation
-- Success/error message handling
-- Common input for both PDF and Word documents
-
-### 4. Configuration System
-- Separate path configurations (config.py)
-- Field coordinates for PDF files
-- Table coordinates for Word documents
-- Common field definitions
-
-## Document Field Configuration
-Located in fields_config.py:
+#### Module Structure
 ```python
-# Common fields
+src/
+    config.py         # Environment configuration
+    │                 # Path management
+    │                 # Resource location
+    │
+    fields_config.py  # Field definitions
+    │                 # Coordinate mappings
+    │                 # Display names
+    │
+    gui/
+    │   form.py       # Dynamic form generation
+    │                 # Input handling
+    │                 # Validation
+    │
+    pdf/
+    │   pdf_reader.py # PDF processing
+    │                 # Text insertion
+    │                 # Coordinate mapping
+    │
+    word/
+        word_reader.py # Word processing
+                      # Table handling
+                      # Cell modification
+```
+
+### Technical Specifications
+
+#### PDF Processing
+- Framework: PyMuPDF (MuPDF)
+- Character Encoding: UTF-8
+- Coordinate System: Bottom-left origin
+- Text Insertion: Absolute positioning
+
+#### Word Processing
+- Framework: python-docx
+- Document Structure: Table-based
+- Cell Identification: Table/Row/Column indices
+- Content Preservation: Existing text maintained
+
+#### GUI Implementation
+- Framework: tkinter
+- Layout: Dynamic generation
+- Scrolling: Canvas-based implementation
+- Validation: Real-time field validation
+
+### Data Structures
+
+#### Field Configuration
+```python
 FIELD_NAMES = {
-    "asmens_kodas": "Asmens Kodas / Imones kodas",
-    "pavarde_imone": "Pavarde / Imones Pavadinimas",
-    "vardas": "Vardas",
-    "gimimo_data": "Gimimo Data"
+    "field_id": "Display Name",
+    # Field definitions
 }
 
-# PDF coordinates
-PDF_COORDINATES = {
-    "Dr_paraiška_2025.pdf": {
-        "asmens_kodas": {"page": 1, "x": 167, "y": 183},
-        # Additional fields...
-    }
-}
-
-# Word document coordinates
-WORD_COORDINATES = {
-    "Europos_paramos_paraiška_KPP.docx": {
-        "asmens_kodas": {"table": 3, "row": 2, "col": 1}
-    }
-}
-```
-
-## Development Notes
-1. File Management:
-   - Keep consistent file naming
-   - Use absolute paths in configuration
-   - Handle UTF-8 filenames properly
-
-2. Code Organization:
-   - Separate functionality into modules
-   - Keep main file minimal
-   - Use consistent naming conventions
-
-3. Error Handling:
-   - Comprehensive error checking
-   - Detailed debug information
-   - User-friendly error messages
-
-## Next Steps
-1. Standalone Application Development:
-   - PyInstaller setup for macOS
-   - Windows compatibility
-   - Distribution packaging
-
-## Common Issues and Solutions
-1. macOS Package Management:
-   - Use Homebrew for system packages
-   - Use pip in virtual environment for Python packages
-=======
-
-### 1. PDF Document Handling
-- PDF text insertion at specific coordinates
-- Support for multiple insertions of same field
-- UTF-8 support for Lithuanian characters
-- Template copying to case folders
-- Coordinate-based text placement
-- Error handling and debugging information
-
-### 2. Word Document Handling
-- Table cell modifications
-- Preservation of existing cell content
-- Automated template copying
-- Structural document navigation (tables, rows, cells)
-
-### 3. GUI Interface
-- Dynamic form generation from configuration
-- Scrollable interface for many fields
-- Optional field input (only Case Number required)
-- Success/error message handling
-- Common input for both PDF and Word documents
-- Proper window sizing and layout
-
-### 4. Configuration System
-- Separate path configurations (config.py)
-- Field coordinates for PDF files
-- Support for multiple coordinates per field
-- Table coordinates for Word documents
-- Common field definitions
-
-### 5. Standalone Application Support
-- PyInstaller configuration
-- Proper path handling in standalone mode
-- Template and case directory management
-- Cross-platform path handling
-
-## Document Field Configuration
-Enhanced field configuration supporting multiple coordinates:
-```python
-# Fields with multiple coordinate support
 PDF_COORDINATES = {
     "template.pdf": {
-        "field_name": [
-            {"page": 1, "x": 100, "y": 100},
-            {"page": 2, "x": 200, "y": 200}
+        "field_id": [
+            {"page": int, "x": float, "y": float},
+            # Multiple coordinates
         ]
     }
 }
+
+WORD_COORDINATES = {
+    "template.docx": {
+        "field_id": {"table": int, "row": int, "col": int}
+    }
+}
 ```
 
-## Development Notes
-1. File Management:
-   - Use relative paths for standalone compatibility
-   - Handle UTF-8 filenames properly
-   - Maintain template structure
+#### Processing Logic
+```python
+def process_form(form_data: dict) -> bool:
+    """
+    Process form data across all templates.
+    
+    Args:
+        form_data: Dictionary of field values
+        
+    Returns:
+        bool: Success status
+        
+    Processing Flow:
+    1. Create case directory
+    2. Process PDF templates
+    3. Process Word templates
+    4. Validate outputs
+    """
+```
 
-2. Code Organization:
-   - Modular architecture
-   - Clear separation of concerns
-   - Configuration-driven design
+### Implementation Patterns
 
-3. Error Handling:
-   - Comprehensive error checking
-   - Detailed debug information
-   - User-friendly error messages
-   - Empty field handling
+#### Template Processing
+```python
+class PDFHandler:
+    """PDF document handler.
+    
+    Responsibilities:
+    - Template copying
+    - Text insertion
+    - Coordinate mapping
+    - Error handling
+    """
+    
+class WordHandler:
+    """Word document handler.
+    
+    Responsibilities:
+    - Template management
+    - Table navigation
+    - Cell modification
+    - Content preservation
+    """
+```
 
-## Standalone Application
-1. Building:
+#### GUI Components
+```python
+class ScrollableFrame:
+    """Scrollable container implementation.
+    
+    Features:
+    - Dynamic content
+    - Mousewheel support
+    - Responsive layout
+    - Custom styling
+    """
+    
+class DraudimasGUI:
+    """Main application interface.
+    
+    Components:
+    - Dynamic form generation
+    - Field validation
+    - Event handling
+    - User feedback
+    """
+```
+
+### Cross-Platform Considerations
+
+#### Path Management
+```python
+def get_executable_dir():
+    """Get executable directory for standalone mode.
+    
+    Handles:
+    - Development environment
+    - Standalone mode
+    - Platform differences
+    - Resource location
+    """
+```
+
+#### Resource Management
+```python
+class ResourceManager:
+    """Resource handling for standalone mode.
+    
+    Responsibilities:
+    - Template location
+    - Output management
+    - Path resolution
+    - State persistence
+    """
+```
+
+### Error Handling
+
+#### Exception Hierarchy
+```python
+class DocumentError(Exception):
+    """Base class for document processing errors."""
+    
+class PDFError(DocumentError):
+    """PDF-specific processing errors."""
+    
+class WordError(DocumentError):
+    """Word document processing errors."""
+```
+
+#### Validation
+```python
+def validate_field(field_id: str, value: str) -> bool:
+    """
+    Validate field value.
+    
+    Checks:
+    - Required fields
+    - Format validation
+    - Character encoding
+    - Length constraints
+    """
+```
+
+### Building Process
+
+#### Development Build
+```bash
+python3 draudimas.py  # Direct execution
+```
+
+#### Standalone Build
 ```bash
 # Clean previous build
 rm -rf build dist
@@ -253,53 +248,75 @@ rm -rf build dist
 # Build application
 pyinstaller draudimas.spec
 
-# Prepare directories
+# Prepare distribution
 mkdir dist/cases
 cp -r templates dist/
 ```
 
-2. Distribution Structure:
-```
-dist/
-├── draudimas     # Executable
-├── templates/    # Template files
-└── cases/       # Output directory
-```
+### Testing Methodology
 
-## Common Issues and Solutions
-1. Package Management:
-   - Use virtual environment for Python packages
->>>>>>> dev
-   - Handle externally-managed environment restrictions
+#### Functional Testing
+1. Document Processing
+   - Template copying
+   - Text insertion
+   - Multi-field handling
+   - Error cases
 
-2. Document Processing:
-   - PDF layer warnings can be ignored if functionality works
-<<<<<<< HEAD
-   - Word documents require table cell preservation
-   - Handle both static (PDF) and dynamic (Word) layouts
+2. GUI Testing
+   - Form generation
+   - Field validation
+   - Event handling
+   - Error display
 
-## Testing
-To verify functionality:
-1. Create test case with all field types
-2. Check both PDF and Word outputs
-3. Verify text placement and formatting
-4. Ensure Lithuanian characters display correctly
-=======
-   - Handle multiple coordinates for same field
-   - Support optional field input
+#### Integration Testing
+1. End-to-End Processing
+   - Complete form submission
+   - Multiple template processing
+   - Output verification
+   - Error handling
 
-3. Path Handling:
-   - Use executable directory as base in standalone mode
-   - Maintain consistent directory structure
-   - Handle relative paths properly
+2. Cross-Platform Testing
+   - macOS functionality
+   - Windows compatibility
+   - Resource handling
+   - Path resolution
 
-## Testing
-To verify functionality:
-1. Create test case with:
-   - Empty fields
-   - Fields with multiple coordinates
-   - Lithuanian characters
-2. Check outputs in cases directory
-3. Verify standalone application
-4. Test all templates
->>>>>>> dev
+### Known Issues and Solutions
+
+#### PDF Processing
+- Layer warnings in specific templates
+  - Non-critical for functionality
+  - Can be safely ignored
+  - No impact on output
+
+#### GUI Implementation
+- Mousewheel scrolling issues
+  - Platform-specific behavior
+  - Requires custom implementation
+  - Event binding modifications
+
+#### Word Processing
+- Cell content preservation
+  - Table structure complexity
+  - Content formatting
+  - Multiple field handling
+
+### Future Considerations
+
+#### Performance Optimization
+- Batch processing
+- Memory management
+- GUI responsiveness
+- Document handling
+
+#### Security Implementation
+- Document integrity
+- Access control
+- Audit logging
+- Data protection
+
+#### Feature Extensions
+- Template management
+- Data persistence
+- Batch processing
+- Reporting system
