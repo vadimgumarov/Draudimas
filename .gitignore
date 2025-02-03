@@ -1,14 +1,30 @@
+# Add to .gitignore
+echo "
+# Build and dist
+build/
+dist/
+
+# macOS
+.DS_Store
+
+# Empty files
+To
+
+# Moved directories
+templates_lt/
+
 # Python
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
 *.py[cod]
 *$py.class
 
-# pip installer
-get-pip.py
+# Virtual Environment
+venv/
 
-# macOS system files
-.DS_Store
-
-# Project specific
+# Output directory
 cases/
-cases/**
+" > .gitignore

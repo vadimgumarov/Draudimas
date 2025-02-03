@@ -30,7 +30,6 @@ def init_directories():
     return {
         'BASE_DIR': base_dir,
         'TEMPLATES_DIR': base_dir / 'templates',
-        'TEMPLATES_LT_DIR': base_dir / 'templates_lt',
         'CASES_DIR': base_dir / 'cases'
     }
 
@@ -40,7 +39,6 @@ dirs = init_directories()
 # Export directory paths
 BASE_DIR = dirs['BASE_DIR']
 TEMPLATES_DIR = dirs['TEMPLATES_DIR']
-TEMPLATES_LT_DIR = dirs['TEMPLATES_LT_DIR']
 CASES_DIR = dirs['CASES_DIR']
 
 # Create necessary directories if they don't exist
@@ -48,7 +46,6 @@ def ensure_directories():
     """Ensure all required directories exist."""
     try:
         TEMPLATES_DIR.mkdir(exist_ok=True)
-        TEMPLATES_LT_DIR.mkdir(exist_ok=True)
         CASES_DIR.mkdir(exist_ok=True)
         print("Debug: Directories initialized successfully")
     except Exception as e:
