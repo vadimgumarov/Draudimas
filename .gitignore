@@ -1,4 +1,4 @@
-# Add to .gitignore if not already there
+# Add to .gitignore
 echo "
 # Build and dist
 build/
@@ -24,4 +24,7 @@ __pycache__/
 
 # Virtual Environment
 venv/
-" >> .gitignore
+
+# Output directory
+cases/
+" > .gitignore
