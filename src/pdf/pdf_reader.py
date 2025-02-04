@@ -1,5 +1,4 @@
-# src/pdf/reader.py
-import sys
+# src/pdf/pdf_reader.py
 from pathlib import Path
 import fitz
 import shutil
@@ -28,8 +27,14 @@ class PDFHandler:
     def add_text_to_pdf(template_path: Path, case_folder: Path, text: str, page_number: int, x: float, y: float) -> bool:
         """Add text to PDF at specified coordinates."""
         try:
+            # Debug text encoding and character info
+            print(f"\nDebug: Text encoding analysis:")
+            print(f"Debug: Original text: {text}")
+            print(f"Debug: Text bytes (UTF-8): {text.encode('utf-8')}")
+            print(f"Debug: Character codes: {[ord(c) for c in text]}")
+            
             output_path = case_folder / template_path.name
-            print(f"Debug: Processing template: {template_path.name}")
+            print(f"\nDebug: Processing template: {template_path.name}")
             print(f"Debug: Output path: {output_path}")
             
             # If this is the first time adding text to this case, copy the template
@@ -41,56 +46,46 @@ class PDFHandler:
             
             # Open and modify the PDF
             print("Debug: Opening PDF for modification")
-            doc_opts = {
-                "clean": True,
-                "deflate": True,
-                "garbage": 4
-            }
-            
             with fitz.open(str(output_path)) as pdf_document:
                 print(f"Debug: Successfully opened PDF, pages: {len(pdf_document)}")
                 page = pdf_document[page_number]
                 print("Debug: Adding text to page")
-                
-                # Create text using insert_text
-                rc = page.insert_text(
-                    point=(x, y),
-                    text=text,
-                    fontsize=11,
-                    fontname="helv",
-                    rotate=0
-                )
-                
-                if not rc:  # text insertion failed
-                    raise Exception("Text insertion failed")
-                    
-                print("Debug: Text inserted, attempting to save")
-                
-                # First try with incremental update
+
                 try:
-                    pdf_document.save(str(output_path), incremental=True, encryption=0)
-                    print("Debug: PDF saved successfully with incremental update")
+                    # Create text writer with Unicode support
+                    tw = fitz.TextWriter(page.rect)
+                    
+                    # Load a Unicode font
+                    font = fitz.Font("helv")
+                    
+                    # Add text to the writer
+                    tw.append((x, y), text, font=font, fontsize=11)
+                    
+                    # Write the text to the page
+                    tw.write_text(page)
+                    
+                    print("Debug: Text written successfully")
+                    
                 except Exception as e:
-                    print(f"Debug: Incremental save failed: {str(e)}")
-                    print("Debug: Attempting full save")
-                    # If incremental update fails, try full save with cleanup
-                    pdf_document.save(
-                        str(output_path), 
-                        incremental=False,
-                        encryption=0,
-                        clean=True,
-                        deflate=True,
-                        garbage=4,
-                        pretty=True
-                    )
-                    print("Debug: PDF saved successfully with full save")
+                    print(f"Debug: Text writing failed: {str(e)}")
+                    raise
+
+                print("\nDebug: Text inserted, attempting to save")
+                pdf_document.save(str(output_path), incremental=True, encryption=0)
+                print("Debug: PDF saved successfully")
+                
+                # Verify the saved content
+                with fitz.open(str(output_path)) as verify_doc:
+                    verify_page = verify_doc[page_number]
+                    text_instances = verify_page.get_text("text")
+                    print(f"\nDebug: Verification - Text found in PDF: {text_instances}")
             
             return True
             
         except Exception as e:
-            print(f"Debug: Exception type: {type(e).__name__}")
+            print(f"\nDebug: Exception type: {type(e).__name__}")
             print(f"Debug: Exception message: {str(e)}")
-            print(f"Debug: Current path exists: {output_path.exists()}")
+            print(f"Debug: Current path exists: {output_path.exists() if 'output_path' in locals() else 'Not created'}")
             return False
 
     @staticmethod
