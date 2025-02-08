@@ -27,4 +27,6 @@ venv/
 
 # Output directory
 cases/
-" > .gitignore
+" > .gitignoresrc/word/table_list.md
+analysis_output/
+src/word/table_list.md
