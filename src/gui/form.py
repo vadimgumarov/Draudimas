@@ -54,8 +54,21 @@ class DraudimasGUI:
         # Dictionary to store field entries
         self.field_entries = {}
         
+        # Validate function for numeric input
+        def validate_numeric(P):
+            if P == "":
+                return True
+            try:
+                int(P)
+                return True
+            except ValueError:
+                return False
+        
+        # Register validation
+        vcmd = (self.root.register(validate_numeric), '%P')
+        
         # Create fields
-        self._create_fields()
+        self._create_fields(vcmd)
         
         # Create bottom frame for submit button (outside scrollable area)
         bottom_frame = ttk.Frame(main_frame)
@@ -65,7 +78,7 @@ class DraudimasGUI:
         submit_btn = ttk.Button(bottom_frame, text="Submit", command=self.submit)
         submit_btn.pack(pady=10)
         
-    def _create_fields(self):
+    def _create_fields(self, vcmd):
         """Create all input fields."""
         # Case Number (always first)
         ttk.Label(self.scroll_frame.scrollable_frame, text="Case Number:").grid(
@@ -74,8 +87,20 @@ class DraudimasGUI:
         self.case_number = ttk.Entry(self.scroll_frame.scrollable_frame, width=40)
         self.case_number.grid(row=0, column=1, sticky=tk.W, pady=5, padx=5)
         
+        # Crop list count field
+        ttk.Label(self.scroll_frame.scrollable_frame, text="Crop List Count:").grid(
+            row=1, column=0, sticky=tk.W, pady=5, padx=5
+        )
+        self.crop_list_count = ttk.Entry(
+            self.scroll_frame.scrollable_frame, 
+            width=40, 
+            validate='key', 
+            validatecommand=vcmd
+        )
+        self.crop_list_count.grid(row=1, column=1, sticky=tk.W, pady=5, padx=5)
+        
         # Create fields from FIELD_NAMES
-        for i, (field_id, field_name) in enumerate(FIELD_NAMES.items(), start=1):
+        for i, (field_id, field_name) in enumerate(FIELD_NAMES.items(), start=2):
             ttk.Label(self.scroll_frame.scrollable_frame, text=f"{field_name}:").grid(
                 row=i, column=0, sticky=tk.W, pady=5, padx=5
             )
@@ -91,8 +116,17 @@ class DraudimasGUI:
             messagebox.showerror("Error", "Case number must be filled")
             return
             
+        # Get crop list count (optional)
+        crop_count = self.crop_list_count.get().strip()
+        if crop_count and not crop_count.isdigit():
+            messagebox.showerror("Error", "Crop list count must be a valid number")
+            return
+            
         # Collect form data
-        form_data = {"case_number": case_num}
+        form_data = {
+            "case_number": case_num,
+            "crop_list_count": crop_count
+        }
         
         # Collect all field values (allowing empty fields)
         for field_id, entry in self.field_entries.items():
@@ -106,6 +140,7 @@ class DraudimasGUI:
             messagebox.showinfo("Success", "Case processed successfully!")
             # Clear the form
             self.case_number.delete(0, tk.END)
+            self.crop_list_count.delete(0, tk.END)
             for entry in self.field_entries.values():
                 entry.delete(0, tk.END)
         else:

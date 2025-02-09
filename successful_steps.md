@@ -40,6 +40,7 @@ pip install pyinstaller  # Standalone builds
 #### Module Structure
 ```python
 src/
+src/
     config.py         # Environment configuration
     │                 # Path management
     │                 # Resource location
@@ -60,8 +61,12 @@ src/
     │
     word/
         word_reader.py # Word processing
-                      # Table handling
-                      # Cell modification
+        │              # Table handling
+        │              # Cell modification
+        │
+        word_table_inspector.py  # Table inspection
+                                # Structure visualization
+                                # Field mapping
 ```
 
 ### Technical Specifications
@@ -77,6 +82,12 @@ src/
 - Document Structure: Table-based
 - Cell Identification: Table/Row/Column indices
 - Content Preservation: Existing text maintained
+- Table Inspection:
+    - Structure visualization in markdown
+    - Field location mapping
+    - Merged cell detection
+    - Cell content analysis
+    - Generated reports for field mapping
 
 #### GUI Implementation
 - Framework: tkinter

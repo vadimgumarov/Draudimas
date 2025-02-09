@@ -9,6 +9,7 @@ A sophisticated document automation system designed to handle concurrent field p
 - Support for multiple field occurrences within documents
 - Dynamic form generation from configuration
 - Cross-platform compatibility (macOS, Windows planned)
+- Word document table inspection and field mapping
 
 ## Technical Architecture
 
@@ -23,6 +24,8 @@ project_root/
 │   ├── gui/            # User interface components
 │   ├── pdf/            # PDF processing modules
 │   └── word/           # Word document processing modules
+│       ├── word_reader.py  # Word document handling
+│       └── word_table_inspector.py  # Table inspection tool
 ├── templates/           # Document templates
 └── cases/              # Processed output
 ```
@@ -39,6 +42,10 @@ project_root/
 #### Document Processing
 - PDF processing using PyMuPDF (MuPDF)
 - Word document processing using python-docx
+    - Table structure inspection and visualization
+    - Field location identification
+    - Merged cell detection
+    - Generated markdown reports for table structure
 - UTF-8 support for Lithuanian characters
 - Template copying with state preservation
 - Coordinate-based text placement
