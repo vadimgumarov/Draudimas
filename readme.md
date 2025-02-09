@@ -10,6 +10,11 @@ A sophisticated document automation system designed to handle concurrent field p
 - Dynamic form generation from configuration
 - Cross-platform compatibility (macOS, Windows planned)
 - Word document table inspection and field mapping
+- Automatic crop list copy generation with sequential numbering
+  - User-defined number of copies
+  - Automatic naming (Nr_1, Nr_2, etc.)
+  - Copies maintain all filled data from first document
+  - Intelligent copy management system
 
 ## Technical Architecture
 
@@ -120,7 +125,7 @@ dist/
 - ✓ Basic Word document processing implemented
 - ✓ GUI implementation complete
 - ✓ macOS standalone support
-- ⋯ Windows support in development
+- ✓ Windows standalone support 
 - ⋯ Field mapping expansion ongoing
 - ⋯ GUI improvements planned
 

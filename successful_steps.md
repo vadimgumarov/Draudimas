@@ -69,6 +69,45 @@ src/
                                 # Field mapping
 ```
 
+#### Document Copy Management
+```python
+class PDFHandler:
+    """PDF document handler with copy management.
+    
+    Features:
+    - Automatic copy numbering
+    - Sequential file naming (Nr_1, Nr_2, etc.)
+    - Data preservation across copies
+    - Intelligent copy source selection
+    """
+    
+    @staticmethod
+    def create_crop_list_copies(template_path: Path, case_folder: Path, count: int):
+        """Create numbered copies of crop list template.
+        
+        Process:
+        1. First copy (Nr_1) contains filled data
+        2. Subsequent copies cloned from Nr_1
+        3. Automatic sequential naming
+        4. Copy verification and validation
+        """
+```
+
+#### GUI Components
+```python
+class DraudimasGUI:
+    """Main application interface.
+    
+    Components:
+    - Dynamic form generation
+    - Field validation
+    - Event handling
+    - User feedback
+    - Copy count management
+    - Numeric input validation
+    """
+```
+
 ### Technical Specifications
 
 #### PDF Processing
@@ -213,7 +252,8 @@ class ResourceManager:
     - Output management
     - Path resolution
     - State persistence
-    """
+    - Copy management
+    - Template versioning
 ```
 
 ### Error Handling
