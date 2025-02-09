@@ -79,6 +79,26 @@ def process_form(form_data):
             if not fields_processed:
                 print(f"Debug: No fields to process for {template_name}")
 
+        # Create multiple copies of crop list if count is provided
+        crop_list_count = form_data.get("crop_list_count", "").strip()
+        if crop_list_count:
+            try:
+                count = int(crop_list_count)
+                if count > 0:
+                    crop_list_template = TEMPLATES_DIR / "Pasėlių sąrašas 2025.pdf"
+                    if crop_list_template.exists():
+                        success = PDFHandler.create_crop_list_copies(
+                            crop_list_template,
+                            case_folder,
+                            count
+                        )
+                        if not success:
+                            print("Warning: Failed to create crop list copies")
+                    else:
+                        print("Warning: Crop list template not found")
+            except ValueError:
+                print("Warning: Invalid crop list count value")
+
         # Process Word documents
         print("\nDebug: Starting Word document processing...")
         try:

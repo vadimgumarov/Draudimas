@@ -6,6 +6,48 @@ from datetime import datetime
 
 class PDFHandler:
     @staticmethod
+    def create_crop_list_copies(template_path: Path, case_folder: Path, count: int) -> bool:
+        """Create multiple copies of the crop list template with sequential numbering."""
+        try:
+            # Template name components
+            base_name = "Pasėlių sąrašas 2025"
+            extension = ".pdf"
+            
+            print(f"\nDebug: Creating {count} copies of crop list")
+            print(f"Debug: Template path: {template_path}")
+            print(f"Debug: Case folder: {case_folder}")
+            
+            # The filled copy will become copy #1
+            filled_copy = case_folder / f"{base_name}{extension}"
+            first_copy = case_folder / f"{base_name} Nr_1{extension}"
+            
+            # Rename the filled copy if it exists
+            if filled_copy.exists():
+                print(f"Debug: Renaming filled copy to Nr_1")
+                if first_copy.exists():
+                    first_copy.unlink()  # Remove existing Nr_1 if it exists
+                filled_copy.rename(first_copy)
+                print(f"Debug: Successfully renamed to {first_copy.name}")
+            
+            # Create additional copies from Nr_1
+            if count > 1:
+                for i in range(2, count + 1):
+                    new_filename = f"{base_name} Nr_{i}{extension}"
+                    output_path = case_folder / new_filename
+                    
+                    print(f"Debug: Creating copy {i}: {new_filename}")
+                    
+                    # Copy from the first (filled) copy
+                    shutil.copy2(str(first_copy), str(output_path))
+                    print(f"Debug: Successfully created copy {i}")
+            
+            return True
+            
+        except Exception as e:
+            print(f"Debug: Error creating crop list copies: {str(e)}")
+            return False
+
+    @staticmethod
     def read_pdf(pdf_path: Path) -> bool:
         """Read a PDF file and verify it can be opened."""
         try:
@@ -33,7 +75,12 @@ class PDFHandler:
             print(f"Debug: Text bytes (UTF-8): {text.encode('utf-8')}")
             print(f"Debug: Character codes: {[ord(c) for c in text]}")
             
-            output_path = case_folder / template_path.name
+            # For the crop list template, always name the output with Nr_1
+            if template_path.name == "Pasėlių sąrašas 2025.pdf":
+                output_path = case_folder / "Pasėlių sąrašas 2025 Nr_1.pdf"
+            else:
+                output_path = case_folder / template_path.name
+                
             print(f"\nDebug: Processing template: {template_path.name}")
             print(f"Debug: Output path: {output_path}")
             
