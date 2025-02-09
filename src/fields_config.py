@@ -36,7 +36,7 @@ FIELD_NAMES = {
 
 # Coordinates for PDF templates
 PDF_COORDINATES = {
-    "Dr_paraiška_2025.pdf": {
+    "Dr paraiška 2025.pdf": {
         "nario_nr": {"page": 1, "x": 40, "y": 157},
         "valdos_nr": {"page": 1, "x": 167, "y": 157},
         "tarpininko_nr": {"page": 1, "x": 300, "y": 157},
@@ -70,23 +70,9 @@ PDF_COORDINATES = {
         "swift_bic": {"page": 1, "x": 390, "y": 445},
         "vieta_data": {"page": 1, "x": 40, "y": 576}
     },
-    "Pasėlių_sąrašas_2025.pdf": {
+    "Pasėlių sąrašas 2025.pdf": {
         "data": {"page": 0, "x": 29, "y": 53},
         "augalu_grupe": {"page": 0, "x": 34, "y": 145},
-        "savivaldybe": {"page": 0, "x": 438, "y": 145},
-        "asmens_kodas": {"page": 0, "x": 545, "y": 98},
-        "pavarde_imone": {"page": 0, "x": 35, "y": 98},
-        "vieta_data": {"page": 0, "x": 335, "y": 560}
-    },
-    "Pasėlių_sąrašas_JAVAI_2025.pdf": {
-        "data": {"page": 0, "x": 29, "y": 53},
-        "savivaldybe": {"page": 0, "x": 438, "y": 145},
-        "asmens_kodas": {"page": 0, "x": 545, "y": 98},
-        "pavarde_imone": {"page": 0, "x": 35, "y": 98},
-        "vieta_data": {"page": 0, "x": 335, "y": 560}
-    },
-    "Pasėlių_sąrašas_ANKŠTINIAI_2025.pdf": {
-        "data": {"page": 0, "x": 29, "y": 53},
         "savivaldybe": {"page": 0, "x": 438, "y": 145},
         "asmens_kodas": {"page": 0, "x": 545, "y": 98},
         "pavarde_imone": {"page": 0, "x": 35, "y": 98},
@@ -96,7 +82,7 @@ PDF_COORDINATES = {
 
 # Coordinates for Word templates (table, row, column)
 WORD_COORDINATES = {
-    "Europos_paramos_paraiška_KPP.docx": {  
+    "Europos paramos paraiška KPP.docx": {  
         "savivaldybe": {"table": 2, "row": 1, "col": 0},
         "seniunija": {"table": 2, "row": 2, "col": 0},
         "vietove": {"table": 2, "row": 3, "col": 0},
