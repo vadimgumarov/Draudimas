@@ -4,7 +4,7 @@
 A sophisticated document automation system designed to handle concurrent field population across multiple document types (PDF and Word) through a unified interface. The system implements a configuration-driven architecture that maintains separation between field definitions, coordinate mappings, and processing logic.
 
 ## Core Functionality
-- Unified data entry interface for multiple document types
+- Unified data entry interface with organized sections for different entity types
 - Simultaneous processing of PDF and Word documents
 - Support for multiple field occurrences within documents
 - Dynamic form generation from configuration
@@ -15,6 +15,9 @@ A sophisticated document automation system designed to handle concurrent field p
   - Automatic naming (Nr_1, Nr_2, etc.)
   - Copies maintain all filled data from first document
   - Intelligent copy management system
+- Multi-entity support (individuals and legal entities)
+- Section-based interface organization
+- Extended field configurations for various document types
 
 ## Technical Architecture
 
@@ -43,25 +46,51 @@ project_root/
 - Coordinate mappings for PDF documents
 - Table cell mappings for Word documents
 - Support for multiple field occurrences
+- Section-based form organization:
+  - Bendri Duomenys (Common Data)
+  - Fiziniai Asmenys (Natural Persons)
+  - Juridiniai Asmenys (Legal Entities)
+  - Ūkio Duomenys (Farm Data)
+  - Atstovas (Representatives)
+  - Banko Duomenys (Bank Details)
+  - Kontaktai (Contacts)
 
 #### Document Processing
 - PDF processing using PyMuPDF (MuPDF)
+  - Coordinate-based text placement
+  - Multi-page document support
+  - Page-specific text handling
+  - Incremental save management
 - Word document processing using python-docx
-    - Table structure inspection and visualization
-    - Field location identification
-    - Merged cell detection
-    - Generated markdown reports for table structure
+  - Table structure inspection and visualization
+  - Field location identification
+  - Multiple coordinate handling for repeated fields
+  - Generated markdown reports for table structure
+  - Multi-table cell mapping
 - UTF-8 support for Lithuanian characters
 - Template copying with state preservation
-- Coordinate-based text placement
-- Table-based cell modifications
+- Intelligent copy management system
+
+#### Supported Documents
+- PDF Templates:
+  - Dr paraiška 2025.pdf
+  - Pasėlių sąrašas 2025.pdf
+- Word Templates:
+  - Europos paramos paraiška KPP.docx
+  - NAC paraiška 2025.docx
+  - De minimis nauja paraiska 2025.docx
+  - Sutikimas dėl dokumentų siuntimo el. laišku.docx
+  - Sutikimas RINKODAROS BDR 2024.docx
 
 #### User Interface
+- Section-based form organization
 - Dynamic form generation from configuration
 - Scrollable interface supporting numerous fields
 - Optional field input capabilities
 - Validation and error handling
 - Success/error feedback system
+- Field grouping by entity type and purpose
+- Logical form flow organization
 
 ## Development Environment
 
@@ -123,9 +152,11 @@ dist/
 ## Current Status
 - ✓ Basic PDF processing implemented
 - ✓ Basic Word document processing implemented
-- ✓ GUI implementation complete
+- ✓ GUI implementation complete with sections
 - ✓ macOS standalone support
 - ✓ Windows standalone support 
+- ✓ Multi-entity support implemented
+- ✓ Extended template support added
 - ⋯ Field mapping expansion ongoing
 - ⋯ GUI improvements planned
 

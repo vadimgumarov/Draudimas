@@ -52,17 +52,19 @@ def process_form(form_data):
             # Process each field defined for this template
             for field_id, coordinates_list in field_coordinates.items():
                 if field_id in form_data and form_data[field_id].strip():  # Only process non-empty fields
-                    print(f"Debug: Processing field: {field_id}")
+                    print(f"Debug: Starting to process field: {field_id}")
+                    print(f"Debug: Full coordinates list: {coordinates_list}")
                     
-                    # Check if coordinates_list is a list or a single dictionary
-                    if isinstance(coordinates_list, list):
-                        coord_list = coordinates_list
-                    else:
-                        coord_list = [coordinates_list]  # Make it a list of one item
-                        
+                    # Convert single coordinate dictionary to list if necessary
+                    if isinstance(coordinates_list, dict):
+                        coordinates_list = [coordinates_list]
+                        print(f"Debug: Converted single coordinate to list: {coordinates_list}")
+                    
                     # Process each coordinate set for this field
-                    for coord_info in coord_list:
-                        print(f"Debug: Adding text at coordinates: {coord_info}")
+                    for i, coord_info in enumerate(coordinates_list, 1):
+                        print(f"Debug: Processing coordinate set {i} of {len(coordinates_list)}")
+                        print(f"Debug: Current coordinates: {coord_info}")
+                        
                         success = PDFHandler.add_text_to_pdf(
                             template_path,
                             case_folder,
@@ -72,8 +74,12 @@ def process_form(form_data):
                             coord_info["y"]
                         )
                         
-                        if not success:
-                            raise Exception(f"Failed to process field {field_id} in {template_name}")
+                        if success:
+                            print(f"Debug: Successfully processed coordinate set {i}")
+                        else:
+                            print(f"Warning: Failed to process field {field_id} at coordinate set {i}: {coord_info}")
+                            continue
+                            
                     fields_processed = True
             
             if not fields_processed:
@@ -119,17 +125,34 @@ def process_form(form_data):
                 for field_id, coord_info in field_coordinates.items():
                     if field_id in form_data and form_data[field_id].strip():  # Only process non-empty fields
                         print(f"Debug: Processing Word field: {field_id}")
-                        success = WordHandler.add_text_to_docx(
-                            template_path,
-                            case_folder,
-                            form_data[field_id],
-                            coord_info["table"],
-                            coord_info["row"],
-                            coord_info["col"]
-                        )
                         
-                        if not success:
-                            raise Exception(f"Failed to process field {field_id} in {template_name}")
+                        # Handle both single and multiple coordinates
+                        if isinstance(coord_info, list):
+                            # Multiple coordinates
+                            for location in coord_info:
+                                success = WordHandler.add_text_to_docx(
+                                    template_path,
+                                    case_folder,
+                                    form_data[field_id],
+                                    location["table"],
+                                    location["row"],
+                                    location["col"]
+                                )
+                                if not success:
+                                    raise Exception(f"Failed to process field {field_id} in {template_name}")
+                        else:
+                            # Single coordinate
+                            success = WordHandler.add_text_to_docx(
+                                template_path,
+                                case_folder,
+                                form_data[field_id],
+                                coord_info["table"],
+                                coord_info["row"],
+                                coord_info["col"]
+                            )
+                            if not success:
+                                raise Exception(f"Failed to process field {field_id} in {template_name}")
+                        
                         fields_processed = True
                 
                 if not fields_processed:

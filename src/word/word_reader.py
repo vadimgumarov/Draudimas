@@ -27,20 +27,14 @@ class WordHandler:
         """Add text to Word document at specified table cell."""
         try:
             output_path = case_folder / template_path.name
-            print(f"Debug: Processing template: {template_path.name}")
-            print(f"Debug: Output path: {output_path}")
             
             # If this is the first time adding text to this case, copy the template
             if not output_path.exists():
-                print("Debug: Creating new copy of template")
                 case_folder.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(str(template_path), str(output_path))
-                print("Debug: Template copied successfully")
             
             # Open and modify the document
-            print("Debug: Opening Word document for modification")
             doc = Document(output_path)
-            print(f"Debug: Document opened, found {len(doc.tables)} tables")
             
             # Verify table exists
             if table >= len(doc.tables):
@@ -59,7 +53,6 @@ class WordHandler:
             # Add text to specified cell while preserving existing content
             cell = table_obj.rows[row].cells[col]
             existing_text = cell.text.strip()
-            print(f"Debug: Current cell content: '{existing_text}'")
             
             # Add a space between existing text and new text if there is existing text
             if existing_text:
@@ -68,19 +61,41 @@ class WordHandler:
                 new_text = text
                 
             cell.text = new_text
-            print(f"Debug: Updated cell content: '{cell.text}'")
             
             # Save the document
-            print("Debug: Saving modified document")
             doc.save(str(output_path))
-            print("Debug: Document saved successfully")
             
             return True
             
         except Exception as e:
-            print(f"Debug: Exception type: {type(e).__name__}")
-            print(f"Debug: Exception message: {str(e)}")
-            print(f"Debug: Current path exists: {output_path.exists() if 'output_path' in locals() else 'Not created'}")
+            print(f"Error: {str(e)}")
+            return False
+
+    @staticmethod
+    def add_text_to_docx_multi(template_path: Path, case_folder: Path, text: str, coordinates_list) -> bool:
+        """Add text to Word document at multiple specified locations."""
+        try:
+            # If coordinates_list is a single dictionary, convert it to a list
+            if isinstance(coordinates_list, dict):
+                coordinates_list = [coordinates_list]
+
+            # Process each coordinate set
+            for coord_info in coordinates_list:
+                success = WordHandler.add_text_to_docx(
+                    template_path,
+                    case_folder,
+                    text,
+                    coord_info["table"],
+                    coord_info["row"],
+                    coord_info["col"]
+                )
+                if not success:
+                    print(f"Warning: Failed to add text at coordinates: {coord_info}")
+
+            return True
+
+        except Exception as e:
+            print(f"Error in multi-coordinate text addition: {str(e)}")
             return False
 
     @staticmethod
