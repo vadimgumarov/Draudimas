@@ -33,6 +33,23 @@ class ScrollableFrame(ttk.Frame):
     def _on_mousewheel(self, event):
         self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
+class Section(ttk.LabelFrame):
+    def __init__(self, parent, title, fields_dict=None):
+        super().__init__(parent, text=title, padding="5")
+        self.fields = {}
+        if fields_dict:
+            self.create_fields(fields_dict)
+
+    def create_fields(self, fields_dict):
+        for i, (field_id, field_name) in enumerate(fields_dict.items()):
+            label = ttk.Label(self, text=f"{field_name}:")
+            label.grid(row=i, column=0, sticky=tk.W, pady=2, padx=5)
+            
+            entry = ttk.Entry(self, width=40)
+            entry.grid(row=i, column=1, sticky=tk.W, pady=2, padx=5)
+            
+            self.fields[field_id] = entry
+
 class DraudimasGUI:
     def __init__(self, root, on_submit):
         self.root = root
@@ -40,8 +57,8 @@ class DraudimasGUI:
         self.on_submit = on_submit
         
         # Set window size and make it resizable
-        self.root.geometry("600x800")
-        self.root.minsize(500, 600)
+        self.root.geometry("800x800")
+        self.root.minsize(600, 600)
         
         # Create main frame with padding
         main_frame = ttk.Frame(root, padding="10")
@@ -51,24 +68,102 @@ class DraudimasGUI:
         self.scroll_frame = ScrollableFrame(main_frame)
         self.scroll_frame.pack(fill=tk.BOTH, expand=True)
         
-        # Dictionary to store field entries
-        self.field_entries = {}
-        
         # Validate function for numeric input
-        def validate_numeric(P):
-            if P == "":
-                return True
-            try:
-                int(P)
-                return True
-            except ValueError:
-                return False
+        vcmd = (self.root.register(self.validate_numeric), '%P')
         
-        # Register validation
-        vcmd = (self.root.register(validate_numeric), '%P')
+        # Create top section (uncategorized fields)
+        top_frame = ttk.Frame(self.scroll_frame.scrollable_frame)
+        top_frame.pack(fill=tk.X, pady=(0, 10))
         
-        # Create fields
-        self._create_fields(vcmd)
+        # Case Number
+        ttk.Label(top_frame, text="Case Number:").grid(row=0, column=0, sticky=tk.W, pady=5, padx=5)
+        self.case_number = ttk.Entry(top_frame, width=40)
+        self.case_number.grid(row=0, column=1, sticky=tk.W, pady=5, padx=5)
+        
+        # Crop List Count
+        ttk.Label(top_frame, text="Crop List Count:").grid(row=1, column=0, sticky=tk.W, pady=5, padx=5)
+        self.crop_list_count = ttk.Entry(top_frame, width=40, validate='key', validatecommand=vcmd)
+        self.crop_list_count.grid(row=1, column=1, sticky=tk.W, pady=5, padx=5)
+
+        # Create sections with their respective fields
+        self.sections = {}
+        
+        # Define fields for each section
+        fiziniai_fields = {
+            "asmens_kodas": FIELD_NAMES["asmens_kodas"],
+            "vardas": FIELD_NAMES["vardas"],
+            "pavarde": FIELD_NAMES["pavarde"],
+            "teisine_forma": FIELD_NAMES["teisine_forma"],
+            "gimimo_data": FIELD_NAMES["gimimo_data"]
+        }
+        
+        juridiniai_fields = {
+            "imones_kodas": FIELD_NAMES["imones_kodas"],
+            "imone": FIELD_NAMES["imone"],            
+            "valdos_nr_juridinis": FIELD_NAMES["valdos_nr_juridinis"],
+            "imones_padaliniai": FIELD_NAMES["imones_padaliniai"]
+        }
+        
+        ukio_fields = {
+            "valdos_nr": FIELD_NAMES["valdos_nr"],
+            "nario_nr": FIELD_NAMES["nario_nr"],
+            "ukio_pavadinimas": FIELD_NAMES["ukio_pavadinimas"],
+            "ukio_registracijos_rajonas": FIELD_NAMES["ukio_registracijos_rajonas"],
+            "zemes_plotas": FIELD_NAMES["zemes_plotas"]
+        }
+        
+        atstovas_fields = {
+            "igalioto_asmens_vardas_pavarde": FIELD_NAMES["igalioto_asmens_vardas_pavarde"],
+            "igalioto_asmens_pareigos": FIELD_NAMES["igalioto_asmens_pareigos"],
+            "igalioto_asmens_tel_nr": FIELD_NAMES["igalioto_asmens_tel_nr"],
+            "igalioto_asmens_el_pastas": FIELD_NAMES["igalioto_asmens_el_pastas"],
+            "tarpininko_nr": FIELD_NAMES["tarpininko_nr"],
+            "tarpininko_pavarde": FIELD_NAMES["tarpininko_pavarde"]
+        }
+        
+        banko_fields = {
+            "saskaitos_turetojas": FIELD_NAMES["saskaitos_turetojas"],
+            "bankas": FIELD_NAMES["bankas"],
+            "saskaitos_nr": FIELD_NAMES["saskaitos_nr"],
+            "swift_bic": FIELD_NAMES["swift_bic"]
+        }
+        
+        kontaktai_fields = {
+            "gatves_pavadinimas": FIELD_NAMES["gatves_pavadinimas"],
+            "namo_nr": FIELD_NAMES["namo_nr"],
+            "butas": FIELD_NAMES["butas"],
+            "miestas": FIELD_NAMES["miestas"],
+            "savivaldybe": FIELD_NAMES["savivaldybe"],
+            "seniunija": FIELD_NAMES["seniunija"],
+            "vietove": FIELD_NAMES["vietove"],
+            "pasto_kodas": FIELD_NAMES["pasto_kodas"],
+            "tel_nr": FIELD_NAMES["tel_nr"],
+            "faksas": FIELD_NAMES["faksas"],
+            "mobilaus_tel_nr": FIELD_NAMES["mobilaus_tel_nr"],
+            "el_pastas": FIELD_NAMES["el_pastas"],
+            "adresas_korespondencijai": FIELD_NAMES["adresas_korespondencijai"]
+        }
+
+        bendri_fields = {
+            "data": FIELD_NAMES["data"],
+            "vieta": FIELD_NAMES["vieta"],
+        }
+
+        # Create and pack sections
+        sections_data = [
+            ("Bendri Duomenys", bendri_fields),
+            ("Fiziniai Asmenys", fiziniai_fields),
+            ("Juridiniai Asmenys", juridiniai_fields),
+            ("Ūkio Duomenys", ukio_fields),
+            ("Atstovas", atstovas_fields),
+            ("Banko Duomenys", banko_fields),
+            ("Kontaktai", kontaktai_fields)
+        ]
+
+        for title, fields in sections_data:
+            section = Section(self.scroll_frame.scrollable_frame, title, fields)
+            section.pack(fill=tk.X, pady=5, padx=5)
+            self.sections[title] = section
         
         # Create bottom frame for submit button (outside scrollable area)
         bottom_frame = ttk.Frame(main_frame)
@@ -77,36 +172,15 @@ class DraudimasGUI:
         # Submit Button
         submit_btn = ttk.Button(bottom_frame, text="Submit", command=self.submit)
         submit_btn.pack(pady=10)
-        
-    def _create_fields(self, vcmd):
-        """Create all input fields."""
-        # Case Number (always first)
-        ttk.Label(self.scroll_frame.scrollable_frame, text="Case Number:").grid(
-            row=0, column=0, sticky=tk.W, pady=5, padx=5
-        )
-        self.case_number = ttk.Entry(self.scroll_frame.scrollable_frame, width=40)
-        self.case_number.grid(row=0, column=1, sticky=tk.W, pady=5, padx=5)
-        
-        # Crop list count field
-        ttk.Label(self.scroll_frame.scrollable_frame, text="Crop List Count:").grid(
-            row=1, column=0, sticky=tk.W, pady=5, padx=5
-        )
-        self.crop_list_count = ttk.Entry(
-            self.scroll_frame.scrollable_frame, 
-            width=40, 
-            validate='key', 
-            validatecommand=vcmd
-        )
-        self.crop_list_count.grid(row=1, column=1, sticky=tk.W, pady=5, padx=5)
-        
-        # Create fields from FIELD_NAMES
-        for i, (field_id, field_name) in enumerate(FIELD_NAMES.items(), start=2):
-            ttk.Label(self.scroll_frame.scrollable_frame, text=f"{field_name}:").grid(
-                row=i, column=0, sticky=tk.W, pady=5, padx=5
-            )
-            entry = ttk.Entry(self.scroll_frame.scrollable_frame, width=40)
-            entry.grid(row=i, column=1, sticky=tk.W, pady=5, padx=5)
-            self.field_entries[field_id] = entry
+
+    def validate_numeric(self, P):
+        if P == "":
+            return True
+        try:
+            int(P)
+            return True
+        except ValueError:
+            return False
 
     def submit(self):
         """Handle form submission."""
@@ -128,10 +202,10 @@ class DraudimasGUI:
             "crop_list_count": crop_count
         }
         
-        # Collect all field values (allowing empty fields)
-        for field_id, entry in self.field_entries.items():
-            value = entry.get().strip()
-            form_data[field_id] = value  # Store value even if empty
+        # Collect all field values from sections
+        for section in self.sections.values():
+            for field_id, entry in section.fields.items():
+                form_data[field_id] = entry.get().strip()
         
         # Call the callback function with the form data
         success = self.on_submit(form_data)
@@ -141,8 +215,9 @@ class DraudimasGUI:
             # Clear the form
             self.case_number.delete(0, tk.END)
             self.crop_list_count.delete(0, tk.END)
-            for entry in self.field_entries.values():
-                entry.delete(0, tk.END)
+            for section in self.sections.values():
+                for entry in section.fields.values():
+                    entry.delete(0, tk.END)
         else:
             messagebox.showerror("Error", "Failed to process case")
 

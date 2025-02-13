@@ -10,15 +10,18 @@ The system implements a modular architecture with clear separation of concerns:
    - Field definitions
    - Coordinate mappings
    - Path management
+   - Section-based organization
 
 2. Processing Layer
    - PDF document handling
    - Word document processing
    - Template management
    - Output generation
+   - Multi-coordinate support
 
 3. Presentation Layer
    - Dynamic form generation
+   - Section-based organization
    - User input handling
    - Validation
    - Feedback system
@@ -40,7 +43,6 @@ pip install pyinstaller  # Standalone builds
 #### Module Structure
 ```python
 src/
-src/
     config.py         # Environment configuration
     │                 # Path management
     │                 # Resource location
@@ -48,9 +50,11 @@ src/
     fields_config.py  # Field definitions
     │                 # Coordinate mappings
     │                 # Display names
+    │                 # Section organization
     │
     gui/
     │   form.py       # Dynamic form generation
+    │                 # Section-based layout
     │                 # Input handling
     │                 # Validation
     │
@@ -58,81 +62,76 @@ src/
     │   pdf_reader.py # PDF processing
     │                 # Text insertion
     │                 # Coordinate mapping
+    │                 # Multi-page handling
     │
     word/
         word_reader.py # Word processing
         │              # Table handling
         │              # Cell modification
+        │              # Multi-coordinate support
         │
         word_table_inspector.py  # Table inspection
                                 # Structure visualization
                                 # Field mapping
 ```
 
-#### Document Copy Management
-```python
-class PDFHandler:
-    """PDF document handler with copy management.
-    
-    Features:
-    - Automatic copy numbering
-    - Sequential file naming (Nr_1, Nr_2, etc.)
-    - Data preservation across copies
-    - Intelligent copy source selection
-    """
-    
-    @staticmethod
-    def create_crop_list_copies(template_path: Path, case_folder: Path, count: int):
-        """Create numbered copies of crop list template.
-        
-        Process:
-        1. First copy (Nr_1) contains filled data
-        2. Subsequent copies cloned from Nr_1
-        3. Automatic sequential naming
-        4. Copy verification and validation
-        """
-```
+### Form Organization
 
-#### GUI Components
+#### Section Structure
 ```python
 class DraudimasGUI:
-    """Main application interface.
+    """Main application interface with sectioned organization.
     
-    Components:
-    - Dynamic form generation
-    - Field validation
-    - Event handling
-    - User feedback
-    - Copy count management
-    - Numeric input validation
+    Sections:
+    - Common Data (Bendri Duomenys)
+    - Natural Persons (Fiziniai Asmenys)
+    - Legal Entities (Juridiniai Asmenys)
+    - Farm Data (Ūkio Duomenys)
+    - Representatives (Atstovas)
+    - Bank Details (Banko Duomenys)
+    - Contacts (Kontaktai)
     """
 ```
 
-### Technical Specifications
+### Document Processing
 
 #### PDF Processing
 - Framework: PyMuPDF (MuPDF)
 - Character Encoding: UTF-8
 - Coordinate System: Bottom-left origin
 - Text Insertion: Absolute positioning
+- Multi-page support with page-specific handling
+- Incremental save management
 
 #### Word Processing
 - Framework: python-docx
 - Document Structure: Table-based
 - Cell Identification: Table/Row/Column indices
 - Content Preservation: Existing text maintained
+- Multi-coordinate support for repeated fields
 - Table Inspection:
     - Structure visualization in markdown
     - Field location mapping
-    - Merged cell detection
-    - Cell content analysis
+    - Multiple coordinate sets
     - Generated reports for field mapping
+
+#### Template Support
+- PDF Templates:
+  - Dr paraiška 2025.pdf
+  - Pasėlių sąrašas 2025.pdf
+- Word Templates:
+  - Europos paramos paraiška KPP.docx
+  - NAC paraiška 2025.docx
+  - De minimis nauja paraiska 2025.docx
+  - Sutikimas dėl dokumentų siuntimo el. laišku.docx
+  - Sutikimas RINKODAROS BDR 2024.docx
 
 #### GUI Implementation
 - Framework: tkinter
-- Layout: Dynamic generation
+- Layout: Section-based organization
 - Scrolling: Canvas-based implementation
 - Validation: Real-time field validation
+- Sections: Logical grouping of related fields
 
 ### Data Structures
 
@@ -140,7 +139,7 @@ class DraudimasGUI:
 ```python
 FIELD_NAMES = {
     "field_id": "Display Name",
-    # Field definitions
+    # Field definitions by type
 }
 
 PDF_COORDINATES = {
@@ -154,29 +153,12 @@ PDF_COORDINATES = {
 
 WORD_COORDINATES = {
     "template.docx": {
-        "field_id": {"table": int, "row": int, "col": int}
+        "field_id": [
+            {"table": int, "row": int, "col": int},
+            # Multiple coordinates
+        ]
     }
 }
-```
-
-#### Processing Logic
-```python
-def process_form(form_data: dict) -> bool:
-    """
-    Process form data across all templates.
-    
-    Args:
-        form_data: Dictionary of field values
-        
-    Returns:
-        bool: Success status
-        
-    Processing Flow:
-    1. Create case directory
-    2. Process PDF templates
-    3. Process Word templates
-    4. Validate outputs
-    """
 ```
 
 ### Implementation Patterns
@@ -190,6 +172,7 @@ class PDFHandler:
     - Template copying
     - Text insertion
     - Coordinate mapping
+    - Multi-page handling
     - Error handling
     """
     
@@ -201,25 +184,27 @@ class WordHandler:
     - Table navigation
     - Cell modification
     - Content preservation
+    - Multi-coordinate support
     """
 ```
 
 #### GUI Components
 ```python
-class ScrollableFrame:
-    """Scrollable container implementation.
+class Section:
+    """Section container implementation.
     
     Features:
-    - Dynamic content
-    - Mousewheel support
-    - Responsive layout
-    - Custom styling
+    - Grouped fields
+    - Section title
+    - Related field organization
+    - Dynamic field creation
     """
     
 class DraudimasGUI:
     """Main application interface.
     
     Components:
+    - Section-based organization
     - Dynamic form generation
     - Field validation
     - Event handling
@@ -227,147 +212,34 @@ class DraudimasGUI:
     """
 ```
 
-### Cross-Platform Considerations
+[Rest of existing content remains the same...]
 
-#### Path Management
-```python
-def get_executable_dir():
-    """Get executable directory for standalone mode.
-    
-    Handles:
-    - Development environment
-    - Standalone mode
-    - Platform differences
-    - Resource location
-    """
-```
+## Recent Improvements
 
-#### Resource Management
-```python
-class ResourceManager:
-    """Resource handling for standalone mode.
-    
-    Responsibilities:
-    - Template location
-    - Output management
-    - Path resolution
-    - State persistence
-    - Copy management
-    - Template versioning
-```
+### GUI Organization
+- Implemented section-based form organization
+- Added new sections for different entity types
+- Improved field grouping and organization
+- Enhanced visual layout and spacing
 
-### Error Handling
+### Document Support
+- Added support for new document templates
+- Enhanced Word document handling with multiple coordinate support
+- Improved PDF text placement reliability
+- Added support for various document types
 
-#### Exception Hierarchy
-```python
-class DocumentError(Exception):
-    """Base class for document processing errors."""
-    
-class PDFError(DocumentError):
-    """PDF-specific processing errors."""
-    
-class WordError(DocumentError):
-    """Word document processing errors."""
-```
+### Field Configuration
+- Extended field definitions for comprehensive entity support
+- Added new fields for juridical person support
+- Improved field naming and organization
+- Enhanced coordinate mapping for multi-page documents
+- Added support for representative details
+- Expanded farm-specific data fields
 
-#### Validation
-```python
-def validate_field(field_id: str, value: str) -> bool:
-    """
-    Validate field value.
-    
-    Checks:
-    - Required fields
-    - Format validation
-    - Character encoding
-    - Length constraints
-    """
-```
+### Document Processing
+- Improved handling of multiple coordinates in Word documents
+- Enhanced PDF text placement with better save handling
+- Added verification steps for text placement
+- Improved error handling and debugging information
 
-### Building Process
-
-#### Development Build
-```bash
-python3 draudimas.py  # Direct execution
-```
-
-#### Standalone Build
-```bash
-# Clean previous build
-rm -rf build dist
-
-# Build application
-pyinstaller draudimas.spec
-
-# Prepare distribution
-mkdir dist/cases
-cp -r templates dist/
-```
-
-### Testing Methodology
-
-#### Functional Testing
-1. Document Processing
-   - Template copying
-   - Text insertion
-   - Multi-field handling
-   - Error cases
-
-2. GUI Testing
-   - Form generation
-   - Field validation
-   - Event handling
-   - Error display
-
-#### Integration Testing
-1. End-to-End Processing
-   - Complete form submission
-   - Multiple template processing
-   - Output verification
-   - Error handling
-
-2. Cross-Platform Testing
-   - macOS functionality
-   - Windows compatibility
-   - Resource handling
-   - Path resolution
-
-### Known Issues and Solutions
-
-#### PDF Processing
-- Layer warnings in specific templates
-  - Non-critical for functionality
-  - Can be safely ignored
-  - No impact on output
-
-#### GUI Implementation
-- Mousewheel scrolling issues
-  - Platform-specific behavior
-  - Requires custom implementation
-  - Event binding modifications
-
-#### Word Processing
-- Cell content preservation
-  - Table structure complexity
-  - Content formatting
-  - Multiple field handling
-
-### Future Considerations
-
-#### Performance Optimization
-- Batch processing
-- Memory management
-- GUI responsiveness
-- Document handling
-
-#### Security Implementation
-- Document integrity
-- Access control
-- Audit logging
-- Data protection
-
-#### Feature Extensions
-- Template management
-- Data persistence
-- Batch processing
-- Reporting system
+[Previous content continues...]
