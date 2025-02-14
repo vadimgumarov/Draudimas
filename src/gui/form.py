@@ -37,23 +37,34 @@ class Section(ttk.LabelFrame):
     def __init__(self, parent, title, fields_dict=None):
         super().__init__(parent, text=title, padding="5")
         self.fields = {}
+        # Configure grid column weights
+        self.grid_columnconfigure(1, weight=1)
+        # Set uniform minimum width for label column
+        self.grid_columnconfigure(0, minsize=300)
+        
         if fields_dict:
             self.create_fields(fields_dict)
 
     def create_fields(self, fields_dict):
         for i, (field_id, field_name) in enumerate(fields_dict.items()):
-            label = ttk.Label(self, text=f"{field_name}:")
-            label.grid(row=i, column=0, sticky=tk.W, pady=2, padx=5)
+            # Create label with text wrapping
+            label = ttk.Label(self, text=f"{field_name}:", wraplength=280, justify="left")
+            label.grid(row=i, column=0, sticky=tk.W, pady=5, padx=(5, 10))
             
-            entry = ttk.Entry(self, width=40)
-            entry.grid(row=i, column=1, sticky=tk.W, pady=2, padx=5)
+            # Create frame for entry to ensure consistent height
+            entry_frame = ttk.Frame(self)
+            entry_frame.grid(row=i, column=1, sticky=tk.EW, pady=5, padx=5)
+            
+            # Add entry widget with full width
+            entry = ttk.Entry(entry_frame)
+            entry.pack(fill=tk.X, expand=True)
             
             self.fields[field_id] = entry
 
 class DraudimasGUI:
     def __init__(self, root, on_submit):
         self.root = root
-        self.root.title("Draudimas Form")
+        self.root.title("Draudimo Forma")
         self.on_submit = on_submit
         
         # Set window size and make it resizable
@@ -75,89 +86,106 @@ class DraudimasGUI:
         top_frame = ttk.Frame(self.scroll_frame.scrollable_frame)
         top_frame.pack(fill=tk.X, pady=(0, 10))
         
-        # Case Number
-        ttk.Label(top_frame, text="Case Number:").grid(row=0, column=0, sticky=tk.W, pady=5, padx=5)
-        self.case_number = ttk.Entry(top_frame, width=40)
-        self.case_number.grid(row=0, column=1, sticky=tk.W, pady=5, padx=5)
+        # Configure grid column weights
+        top_frame.grid_columnconfigure(1, weight=1)
+        # Set uniform minimum width for label column
+        top_frame.grid_columnconfigure(0, minsize=300)
+
+        # Case Name
+        case_label = ttk.Label(top_frame, text="Bylos pavadinimas:", wraplength=280, justify="left")
+        case_label.grid(row=0, column=0, sticky=tk.W, pady=5, padx=(5, 10))
+        self.case_number = ttk.Entry(top_frame)
+        self.case_number.grid(row=0, column=1, sticky=tk.EW, pady=5, padx=5)
+        
+        # Date
+        date_label = ttk.Label(top_frame, text="Data:", wraplength=280, justify="left")
+        date_label.grid(row=1, column=0, sticky=tk.W, pady=5, padx=(5, 10))
+        self.date = ttk.Entry(top_frame)
+        self.date.grid(row=1, column=1, sticky=tk.EW, pady=5, padx=5)
+
+        # Place
+        place_label = ttk.Label(top_frame, text="Vieta:", wraplength=280, justify="left")
+        place_label.grid(row=2, column=0, sticky=tk.W, pady=5, padx=(5, 10))
+        self.place = ttk.Entry(top_frame)
+        self.place.grid(row=2, column=1, sticky=tk.EW, pady=5, padx=5)
         
         # Crop List Count
-        ttk.Label(top_frame, text="Crop List Count:").grid(row=1, column=0, sticky=tk.W, pady=5, padx=5)
-        self.crop_list_count = ttk.Entry(top_frame, width=40, validate='key', validatecommand=vcmd)
-        self.crop_list_count.grid(row=1, column=1, sticky=tk.W, pady=5, padx=5)
+        crop_label = ttk.Label(top_frame, text="Pasėlių sąrašo kopijų skaičius:", wraplength=280, justify="left")
+        crop_label.grid(row=3, column=0, sticky=tk.W, pady=5, padx=(5, 10))
+        self.crop_list_count = ttk.Entry(top_frame, validate='key', validatecommand=vcmd)
+        self.crop_list_count.grid(row=3, column=1, sticky=tk.EW, pady=5, padx=5)
 
         # Create sections with their respective fields
         self.sections = {}
         
         # Define fields for each section
-        fiziniai_fields = {
-            "asmens_kodas": FIELD_NAMES["asmens_kodas"],
-            "vardas": FIELD_NAMES["vardas"],
-            "pavarde": FIELD_NAMES["pavarde"],
-            "teisine_forma": FIELD_NAMES["teisine_forma"],
-            "gimimo_data": FIELD_NAMES["gimimo_data"]
+        individual_fields = {
+            "vardas": "Vardas",
+            "pavarde": "Pavardė",
+            "asmens_kodas": "Asmens kodas",
+            "gimimo_data": "Gimimo data",
+            "teisine_forma": "Teisinė forma (Ūkininkas / Ūkininkė)",
+            "nario_nr": "Nario numeris"
         }
         
-        juridiniai_fields = {
-            "imones_kodas": FIELD_NAMES["imones_kodas"],
-            "imone": FIELD_NAMES["imone"],            
-            "valdos_nr_juridinis": FIELD_NAMES["valdos_nr_juridinis"],
-            "imones_padaliniai": FIELD_NAMES["imones_padaliniai"]
+        legal_entity_fields = {
+            "imone": "Įmonės pavadinimas",
+            "imones_kodas": "Įmonės kodas",            
+            "valdos_nr_juridinis": "Juridinio asmens valdos numeris",
+            "imones_padaliniai": "Įmonės padaliniai (Gamybos vieta)"
         }
         
-        ukio_fields = {
-            "valdos_nr": FIELD_NAMES["valdos_nr"],
-            "nario_nr": FIELD_NAMES["nario_nr"],
-            "ukio_pavadinimas": FIELD_NAMES["ukio_pavadinimas"],
-            "ukio_registracijos_rajonas": FIELD_NAMES["ukio_registracijos_rajonas"],
-            "zemes_plotas": FIELD_NAMES["zemes_plotas"]
+        farm_fields = {
+            "valdos_nr": "Valdos numeris",
+            "ukio_pavadinimas": "Ūkio pavadinimas",
+            "ukio_registracijos_rajonas": "Ūkio registracijos rajonas",
+            "zemes_plotas": "Bendras įmonės dirbamų žemių plotas, ha"
         }
         
-        atstovas_fields = {
-            "igalioto_asmens_vardas_pavarde": FIELD_NAMES["igalioto_asmens_vardas_pavarde"],
-            "igalioto_asmens_pareigos": FIELD_NAMES["igalioto_asmens_pareigos"],
-            "igalioto_asmens_tel_nr": FIELD_NAMES["igalioto_asmens_tel_nr"],
-            "igalioto_asmens_el_pastas": FIELD_NAMES["igalioto_asmens_el_pastas"],
-            "tarpininko_nr": FIELD_NAMES["tarpininko_nr"],
-            "tarpininko_pavarde": FIELD_NAMES["tarpininko_pavarde"]
-        }
-        
-        banko_fields = {
-            "saskaitos_turetojas": FIELD_NAMES["saskaitos_turetojas"],
-            "bankas": FIELD_NAMES["bankas"],
-            "saskaitos_nr": FIELD_NAMES["saskaitos_nr"],
-            "swift_bic": FIELD_NAMES["swift_bic"]
-        }
-        
-        kontaktai_fields = {
-            "gatves_pavadinimas": FIELD_NAMES["gatves_pavadinimas"],
-            "namo_nr": FIELD_NAMES["namo_nr"],
-            "butas": FIELD_NAMES["butas"],
-            "miestas": FIELD_NAMES["miestas"],
-            "savivaldybe": FIELD_NAMES["savivaldybe"],
-            "seniunija": FIELD_NAMES["seniunija"],
-            "vietove": FIELD_NAMES["vietove"],
-            "pasto_kodas": FIELD_NAMES["pasto_kodas"],
-            "tel_nr": FIELD_NAMES["tel_nr"],
-            "faksas": FIELD_NAMES["faksas"],
-            "mobilaus_tel_nr": FIELD_NAMES["mobilaus_tel_nr"],
-            "el_pastas": FIELD_NAMES["el_pastas"],
-            "adresas_korespondencijai": FIELD_NAMES["adresas_korespondencijai"]
+        representative_fields = {
+            "authorized_person_name": "Įgalioto asmens vardas, pavardė",
+            "authorized_person_position": "Įgalioto asmens pareigos",
+            "authorized_person_phone": "Įgalioto asmens tel. nr.",
+            "authorized_person_email": "Įgalioto asmens el. paštas",
+
         }
 
-        bendri_fields = {
-            "data": FIELD_NAMES["data"],
-            "vieta": FIELD_NAMES["vieta"],
+        mediator_fields = {           
+            "mediator_number": "Tarpininko numeris",
+            "mediator_surname": "Tarpininko pavardė"
+        }
+
+        bank_fields = {
+            "saskaitos_turetojas": "Sąskaitos turėtojas",
+            "bankas": "Bankas",
+            "saskaitos_nr": "Sąskaitos numeris",
+            "swift_bic": "Banko kodas - SWIFT / BIC"
+        }
+        
+        contact_fields = {
+            "savivaldybe": "Savivaldybė",
+            "seniunija": "Seniūnija",
+            "miestas": "Miestas",
+            "vietove": "Vietovė (Kaimo pavadinimas)",
+            "gatves_pavadinimas_nr": "Gatvės pavadinimas ir namo numeris",
+            "butas": "Buto numeris",
+            "pasto_kodas": "Pašto kodas",
+            "tel_nr": "Telefono numeris",
+            "faksas": "Fakso numeris",
+            "mobilaus_tel_nr": "Mobilaus tel. numeris",
+            "el_pastas": "El. pašto adresas",
+            "adresas_korespondencijai": "Adresas korespondencijai, jei nesutampa su nurodytu buveinės adresu"
         }
 
         # Create and pack sections
         sections_data = [
-            ("Bendri Duomenys", bendri_fields),
-            ("Fiziniai Asmenys", fiziniai_fields),
-            ("Juridiniai Asmenys", juridiniai_fields),
-            ("Ūkio Duomenys", ukio_fields),
-            ("Atstovas", atstovas_fields),
-            ("Banko Duomenys", banko_fields),
-            ("Kontaktai", kontaktai_fields)
+            ("Fiziniai asmenys", individual_fields),
+            ("Juridiniai asmenys", legal_entity_fields),
+            ("Ūkio duomenys", farm_fields),
+            ("Atstovas", representative_fields),
+            ("Tarpininkas", mediator_fields),
+            ("Banko duomenys", bank_fields),
+            ("Kontaktinė informacija", contact_fields)
         ]
 
         for title, fields in sections_data:
@@ -165,12 +193,12 @@ class DraudimasGUI:
             section.pack(fill=tk.X, pady=5, padx=5)
             self.sections[title] = section
         
-        # Create bottom frame for submit button (outside scrollable area)
+        # Create bottom frame for submit button
         bottom_frame = ttk.Frame(main_frame)
         bottom_frame.pack(fill=tk.X, pady=10)
         
         # Submit Button
-        submit_btn = ttk.Button(bottom_frame, text="Submit", command=self.submit)
+        submit_btn = ttk.Button(bottom_frame, text="Pateikti", command=self.submit)
         submit_btn.pack(pady=10)
 
     def validate_numeric(self, P):
@@ -187,18 +215,20 @@ class DraudimasGUI:
         # Basic validation
         case_num = self.case_number.get().strip()
         if not case_num:
-            messagebox.showerror("Error", "Case number must be filled")
+            messagebox.showerror("Klaida", "Būtina įvesti bylos numerį")
             return
             
         # Get crop list count (optional)
         crop_count = self.crop_list_count.get().strip()
         if crop_count and not crop_count.isdigit():
-            messagebox.showerror("Error", "Crop list count must be a valid number")
+            messagebox.showerror("Klaida", "Pasėlių sąrašo kopijų skaičius turi būti skaičius")
             return
             
         # Collect form data
         form_data = {
             "case_number": case_num,
+            "data": self.date.get().strip(),
+            "vieta": self.place.get().strip(),
             "crop_list_count": crop_count
         }
         
@@ -211,7 +241,7 @@ class DraudimasGUI:
         success = self.on_submit(form_data)
         
         if success:
-            messagebox.showinfo("Success", "Case processed successfully!")
+            messagebox.showinfo("Sėkmė", "Byla sėkmingai apdorota!")
             # Clear the form
             self.case_number.delete(0, tk.END)
             self.crop_list_count.delete(0, tk.END)
@@ -219,7 +249,7 @@ class DraudimasGUI:
                 for entry in section.fields.values():
                     entry.delete(0, tk.END)
         else:
-            messagebox.showerror("Error", "Failed to process case")
+            messagebox.showerror("Klaida", "Nepavyko apdoroti bylos")
 
     def run(self):
         """Start the GUI."""
