@@ -1,5 +1,19 @@
 # src/fields_config.py
 
+# Field combinations configuration
+FIELD_COMBINATIONS = {
+    "gatves_pavadinimas_namo_nr": {
+        "combine_fields": ["gatves_pavadinimas", "namo_nr"],
+        "separator": " ",
+        "primary_field": "gatves_pavadinimas"
+    },
+    "pavarde_vardas": {
+        "combine_fields": ["pavarde", "vardas"],
+        "separator": " ",
+        "primary_field": "pavarde"
+    }
+}
+
 # Common fields and their display names
 FIELD_NAMES = {
     "data": "Data",
@@ -61,7 +75,7 @@ PDF_COORDINATES = {
         "vardas": {"page": 1, "x": 40, "y": 232},
         "igalioto_asmens_vardas_pavarde": {"page": 1, "x": 40, "y": 232},
         "gimimo_data": {"page": 1, "x": 480, "y": 232},
-        "gatves_pavadinimas": {"page": 1, "x": 40, "y": 260},
+        "gatves_pavadinimas_namo_nr": {"page": 1, "x": 40, "y": 260},
         "savivaldybe": {"page": 1, "x": 40, "y": 288},
         "seniunija": {"page": 1, "x": 208, "y": 288},
         "vietove": {"page": 1, "x": 393, "y": 288},
@@ -88,8 +102,7 @@ PDF_COORDINATES = {
         "augalu_grupe": {"page": 0, "x": 34, "y": 145},
         "savivaldybe": {"page": 0, "x": 438, "y": 145},
         "asmens_kodas": {"page": 0, "x": 545, "y": 98},
-        "pavarde": {"page": 0, "x": 150, "y": 85},
-        "vardas": {"page": 0, "x": 150, "y": 100},
+        "pavarde_vardas": {"page": 0, "x": 150, "y": 85},
         "imone": {"page": 0, "x": 150, "y": 85},
         "vieta": {"page": 0, "x": 335, "y": 560}   
         }

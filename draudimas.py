@@ -3,10 +3,30 @@ import sys
 import tkinter as tk
 from pathlib import Path
 from src.config import TEMPLATES_DIR, CASES_DIR
-from src.fields_config import FIELD_NAMES, PDF_COORDINATES, WORD_COORDINATES
+from src.fields_config import FIELD_NAMES, PDF_COORDINATES, WORD_COORDINATES, FIELD_COMBINATIONS
 from src.pdf.pdf_reader import PDFHandler
 from src.word.word_reader import WordHandler
 from src.gui.form import DraudimasGUI
+
+def process_combined_fields(form_data):
+    """Process form data to handle combined fields."""
+    processed_data = form_data.copy()
+    
+    for combined_field, config in FIELD_COMBINATIONS.items():
+        source_fields = config['combine_fields']
+        separator = config.get('separator', ' ')
+        
+        # Get values from source fields
+        values = []
+        for field in source_fields:
+            if field in form_data and form_data[field].strip():
+                values.append(form_data[field].strip())
+        
+        # Combine values if any exist
+        if values:
+            processed_data[combined_field] = separator.join(values)
+    
+    return processed_data
 
 def process_form(form_data):
     """Process the submitted form data for all templates."""
@@ -15,6 +35,10 @@ def process_form(form_data):
         
         # Create case folder
         case_folder = PDFHandler.create_case_folder(CASES_DIR, form_data["case_number"])
+        
+        # Process combined fields
+        processed_form_data = process_combined_fields(form_data)
+        print(f"Debug: Processed form data with combined fields: {processed_form_data.keys()}")
 
         # Debug Word document detection
         print("\nDebug: Looking for Word documents in templates directory...")
@@ -51,7 +75,7 @@ def process_form(form_data):
             
             # Process each field defined for this template
             for field_id, coordinates_list in field_coordinates.items():
-                if field_id in form_data and form_data[field_id].strip():  # Only process non-empty fields
+                if field_id in processed_form_data and processed_form_data[field_id].strip():
                     print(f"Debug: Starting to process field: {field_id}")
                     print(f"Debug: Full coordinates list: {coordinates_list}")
                     
@@ -68,7 +92,7 @@ def process_form(form_data):
                         success = PDFHandler.add_text_to_pdf(
                             template_path,
                             case_folder,
-                            form_data[field_id],
+                            processed_form_data[field_id],
                             coord_info["page"],
                             coord_info["x"],
                             coord_info["y"]
@@ -76,17 +100,16 @@ def process_form(form_data):
                         
                         if success:
                             print(f"Debug: Successfully processed coordinate set {i}")
+                            fields_processed = True
                         else:
                             print(f"Warning: Failed to process field {field_id} at coordinate set {i}: {coord_info}")
                             continue
-                            
-                    fields_processed = True
             
             if not fields_processed:
                 print(f"Debug: No fields to process for {template_name}")
 
         # Create multiple copies of crop list if count is provided
-        crop_list_count = form_data.get("crop_list_count", "").strip()
+        crop_list_count = processed_form_data.get("crop_list_count", "").strip()
         if crop_list_count:
             try:
                 count = int(crop_list_count)
@@ -123,7 +146,7 @@ def process_form(form_data):
                 
                 # Process each field defined for this template
                 for field_id, coord_info in field_coordinates.items():
-                    if field_id in form_data and form_data[field_id].strip():  # Only process non-empty fields
+                    if field_id in processed_form_data and processed_form_data[field_id].strip():
                         print(f"Debug: Processing Word field: {field_id}")
                         
                         # Handle both single and multiple coordinates
@@ -133,7 +156,7 @@ def process_form(form_data):
                                 success = WordHandler.add_text_to_docx(
                                     template_path,
                                     case_folder,
-                                    form_data[field_id],
+                                    processed_form_data[field_id],
                                     location["table"],
                                     location["row"],
                                     location["col"]
@@ -145,7 +168,7 @@ def process_form(form_data):
                             success = WordHandler.add_text_to_docx(
                                 template_path,
                                 case_folder,
-                                form_data[field_id],
+                                processed_form_data[field_id],
                                 coord_info["table"],
                                 coord_info["row"],
                                 coord_info["col"]
