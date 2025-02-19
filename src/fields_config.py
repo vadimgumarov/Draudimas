@@ -11,6 +11,11 @@ FIELD_COMBINATIONS = {
         "combine_fields": ["pavarde", "vardas"],
         "separator": " ",
         "primary_field": "pavarde"
+    },
+    "vieta_data": {
+        "combine_fields": ["vieta", "data"],
+        "separator": " / ",
+        "primary_field": "vieta"
     }
 }
 
@@ -95,16 +100,12 @@ PDF_COORDINATES = {
         "data": {"page": 1, "x": 130, "y": 576}
     },
     "Pasėlių sąrašas 2025.pdf": {
-        "data": [
-            {"page": 0, "x": 29, "y": 53},
-            {"page": 0, "x": 129, "y": 560}
-        ],
-        "augalu_grupe": {"page": 0, "x": 34, "y": 145},
+        "data": {"page": 0, "x": 29, "y": 53},
         "savivaldybe": {"page": 0, "x": 438, "y": 145},
         "asmens_kodas": {"page": 0, "x": 545, "y": 98},
         "pavarde_vardas": {"page": 0, "x": 150, "y": 85},
         "imone": {"page": 0, "x": 150, "y": 85},
-        "vieta": {"page": 0, "x": 335, "y": 560}   
+        "vieta_data": {"page": 0, "x": 340, "y": 560}   
         }
 }
 

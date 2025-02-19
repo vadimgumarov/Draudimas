@@ -143,16 +143,16 @@ class DraudimasGUI:
         }
         
         representative_fields = {
-            "authorized_person_name": "Įgalioto asmens vardas, pavardė",
-            "authorized_person_position": "Įgalioto asmens pareigos",
-            "authorized_person_phone": "Įgalioto asmens tel. nr.",
-            "authorized_person_email": "Įgalioto asmens el. paštas",
+            "igalioto_asmens_vardas_pavarde": "Įgalioto asmens vardas, pavardė",
+            "igalioto_asmens_pareigos": "Įgalioto asmens pareigos",
+            "igalioto_asmens_tel_nr": "Įgalioto asmens tel. nr.",
+            "igalioto_asmens_el_pastas": "Įgalioto asmens el. paštas",
 
         }
 
         mediator_fields = {           
-            "mediator_number": "Tarpininko numeris",
-            "mediator_surname": "Tarpininko pavardė"
+            "tarpininko_nr": "Tarpininko numeris",
+            "tarpininko_pavarde": "Tarpininko pavardė"
         }
 
         bank_fields = {
@@ -169,8 +169,6 @@ class DraudimasGUI:
             "vietove": "Vietovė (Kaimo pavadinimas)",
             "gatves_pavadinimas": "Gatvės pavadinimas",
             "namo_nr": "Namo numeris",
-            "Gatvės pavadinimas": "gatves_pavadinimas",
-            "Namo numeris": "namo_nr",
             "butas": "Buto numeris",
             "pasto_kodas": "Pašto kodas",
             "tel_nr": "Telefono numeris",
